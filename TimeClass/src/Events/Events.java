@@ -15,15 +15,17 @@ import timeclass.TimeClass;
  */
 public class Events {
     
+    protected String eventName;
     protected String Days;
-    protected TimeClass time;
+    protected TimeClass Time;
     
-    public Events(String days, int hours, int minutes, int duration)
+    public Events(String name, String days, int hours, int minutes, int duration)
     // String days can be any of the enumerated
     // types below
     {
+        this.eventName = name;
         this.Days = days;
-        this.time = new TimeClass(hours, minutes, duration);
+        this.Time = new TimeClass(hours, minutes, duration);
     }
     
     public enum DaysOfWeek {
@@ -34,7 +36,12 @@ public class Events {
     
     @Override
     public String toString(){
-        return this.time.toString();
+        
+        String output = "\nTitle: " + this.eventName + "\n";
+        output += "Days: " + this.Days;
+        output += this.Time.toString();
+        
+        return output;
     }
     
     

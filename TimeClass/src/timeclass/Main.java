@@ -39,7 +39,7 @@ public class Main {
         System.out.println("Times 2 and 4 conflict?\n" + test2.compareTo(test4));
         System.out.println("Times 3 and 4 conflict?\n" + test3.compareTo(test4));
         
-        Events event1 = new Events("MTW", 13, 30, 60);
+        Events event1 = new Events("Tester", "MTW", 13, 30, 60);
         System.out.println(event1);
         
     }

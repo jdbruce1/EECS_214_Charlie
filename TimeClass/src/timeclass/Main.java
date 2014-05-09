@@ -6,6 +6,8 @@
 
 package timeclass;
 
+import Events.Events;
+
 /**
  *
  * @author Brownrout
@@ -36,6 +38,9 @@ public class Main {
         System.out.println("Times 1 and 3 conflict?\n" + test.compareTo(test3));
         System.out.println("Times 2 and 4 conflict?\n" + test2.compareTo(test4));
         System.out.println("Times 3 and 4 conflict?\n" + test3.compareTo(test4));
+        
+        Events event1 = new Events("MTW", 13, 30, 60);
+        System.out.println(event1);
         
     }
     

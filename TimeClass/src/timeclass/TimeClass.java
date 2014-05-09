@@ -38,11 +38,18 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
     }
 
     @Override
-    public int compareTo(TimeClass o)
-    // return 1 if the times overlap
+    public int compareTo(TimeClass time2)
+    // return 1 if the times conflict
     // return 0 if the times do not conflict
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // If start time conflicts
+        if(time2.getTime()>=this.getTime()&&time2.getTime()<=(this.getTime()+this.duration)){
+            return 1;
+        }
+        else if((time2.getTime()+time2.duration)>=this.getTime()&&(time2.getTime()+time2.duration)<=(this.getTime()+this.duration)){
+            return 1;
+        }
+        else return 0;
     }
 
     @Override

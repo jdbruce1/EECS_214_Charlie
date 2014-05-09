@@ -19,11 +19,24 @@ public class Main {
         // TODO code application logic here\
         
         TimeClass test = new TimeClass(5, 30, 60);
-        System.out.println(test);
+        System.out.println("Time 1 is:" + test);
         test.setTime(6, 0, 120);
-        System.out.println(test);
-        test.setTime(14, 45, 60);
-        System.out.println(test);
+        System.out.println("Time 1 is:" + test);
+        
+        TimeClass test2 = new TimeClass(7, 15, 60);
+        System.out.println("Time 2 is:" + test2);
+        
+        TimeClass test3 = new TimeClass(11, 30, 120);
+        System.out.println("Time 3 is:" + test3);
+        
+        TimeClass test4 = new TimeClass(12, 30, 180);
+        System.out.println("Time 4 is:" + test4);
+        
+        System.out.println("Times 1 and 2 conflict?\n" + test.compareTo(test2));
+        System.out.println("Times 1 and 3 conflict?\n" + test.compareTo(test3));
+        System.out.println("Times 2 and 4 conflict?\n" + test2.compareTo(test4));
+        System.out.println("Times 3 and 4 conflict?\n" + test3.compareTo(test4));
+        
     }
     
 }

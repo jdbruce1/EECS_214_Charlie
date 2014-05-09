@@ -22,6 +22,8 @@ public class Main {
         System.out.println(test);
         test.setTime(6, 0, 120);
         System.out.println(test);
+        test.setTime(14, 45, 60);
+        System.out.println(test);
     }
     
 }

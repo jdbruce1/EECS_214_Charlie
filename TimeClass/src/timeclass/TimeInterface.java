@@ -16,4 +16,6 @@ public interface TimeInterface {
     
     public int getTime();
     
+    public String convertTime();
+    
 }

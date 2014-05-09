@@ -59,11 +59,45 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
         return start;
     }
     
+    @Override
     public String toString(){
-        String output = "\nStart: " + start;
-        output+="\nEnd: " + end;
-        output+="\nDuration: " + duration + "\n";
-        return output;
+        return convertTime();
+    }
+
+    @Override
+    public String convertTime() {
+        
+        String timeOutput = "";
+        boolean startPM = false;
+        boolean endPM = false;
+        
+        if((hours*60 + minutes) > 720){
+            startPM = true;
+        }
+        if((hours*60 + minutes + duration) > 720){
+            endPM = true;
+        }
+        
+        int convertedHours = (start / 60)%12; //since both are ints, you get an int
+        int convertedMinutes = start % 60;
+        
+        timeOutput += "\nStart: " + String.format("%d:%02d", convertedHours, convertedMinutes);
+        if(startPM){
+            timeOutput += " PM\n";
+        }
+        else timeOutput += " AM\n";
+        
+        convertedHours = (end / 60)%12; //since both are ints, you get an int
+        convertedMinutes = end % 60;
+        
+        timeOutput += "End: "  + String.format("%d:%02d", convertedHours, convertedMinutes);
+         if(endPM){
+            timeOutput += " PM\n";
+        }
+        else timeOutput += " AM\n";
+        
+        return timeOutput;
+        
     }
     
 }

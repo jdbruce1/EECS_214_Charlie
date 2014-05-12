@@ -30,10 +30,15 @@ public class ScheduleProject {
         TimeClass test4 = new TimeClass(12, 30, 180);
         System.out.println("Time 4 is:" + test4);
         
+        TimeClass test5 = new TimeClass(11, 30, 300);
+        System.out.println("Time 5 is:" + test5);
+        
         System.out.println("Times 1 and 2 conflict?\n" + test.compareTo(test2));
         System.out.println("Times 1 and 3 conflict?\n" + test.compareTo(test3));
         System.out.println("Times 2 and 4 conflict?\n" + test2.compareTo(test4));
         System.out.println("Times 3 and 4 conflict?\n" + test3.compareTo(test4));
+        System.out.println("Times 4 and 5 conflict?\n" + test4.compareTo(test5));
+        System.out.println("Times 5 and 4 conflict?\n" + test5.compareTo(test4));
         
         Events event1 = new Events("Tester", "MTW", 13, 30, 60);
         System.out.println(event1);

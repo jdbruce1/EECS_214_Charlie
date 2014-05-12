@@ -49,6 +49,9 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
         else if((time2.getTime()+time2.duration)>=this.getTime()&&(time2.getTime()+time2.duration)<=(this.getTime()+this.duration)){
             return 1;
         }
+        else if(time2.getTime()<=this.getTime()&&(time2.getTime()+time2.duration)>=(this.getTime()+this.duration)){
+            return 1;
+        }
         else return 0;
     }
 
@@ -85,7 +88,13 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
             endPM = true;
         }
         
-        int convertedHours = (start / 60)%12; //since both are ints, you get an int
+        int convertedHours;
+        
+        if((start/60)!=12){
+            convertedHours = (start / 60)%12;
+        }
+        else convertedHours = 12;
+        
         int convertedMinutes = start % 60;
         
         timeOutput += "\nStart: " + String.format("%d:%02d", convertedHours, convertedMinutes);

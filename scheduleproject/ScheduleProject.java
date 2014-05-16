@@ -45,6 +45,15 @@ public class ScheduleProject {
         
         Course course1 = new Course("Data Structures", "MWF", 11, 0, 50, "Rahimi", "214","EECS");
         System.out.println(course1);
+        
+        Schedule mySchedule = new Schedule("Jacob's Schedule");
+        mySchedule.addEvent(event1);
+        mySchedule.addEvent(course1);
+        System.out.println(mySchedule);
+        
+        mySchedule.build();
+        System.out.println(mySchedule);
+        
     }
     
 }

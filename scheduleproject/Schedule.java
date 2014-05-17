@@ -9,34 +9,58 @@ import java.util.Scanner;
 public class Schedule {
     protected String name;
     protected Events[] events;
-    int nextEvent;
+    int numEvents;
 
     public Schedule(String n) {
         name = n;
         events = new Events[30];
-        nextEvent = 0;
+        numEvents = 0;
     }
     
     public Schedule(String n, Events[] e){
         name = n;
-        System.arraycopy(e, nextEvent, e, nextEvent, e.length);
-        nextEvent = e.length + 1;
+        System.arraycopy(e, numEvents, e, numEvents, e.length);
+        numEvents = e.length + 1;
     }
     
     public void addEvent(Events e){
-        this.events[nextEvent] = e;
-        nextEvent ++;
+        
+        Events listElement;
+        int location = 0;
+        
+        while(location < numEvents){
+            listElement = (Events) events[location];
+            if(((Comparable)listElement).compareTo(e) < 0){
+                location ++;
+            }
+            else{
+                break;
+            }
+        }
+        
+        for(int index = numEvents; index > location; index --){
+            events[index] = events[index - 1];
+        }
+        
+        events[location] = e;
+        numEvents++;
+        
+    }
+    
+    public void addEventSeq(Events e){
+        events[numEvents] = e;
+        numEvents ++;
     }
     
     @Override
     public String toString(){
         
-        if(nextEvent == 0){
+        if(numEvents == 0){
             return "\nThe schedule " + name + " doesn't have any events in it.\n";
         }
         
         String output = "\nThe schedule " + name + " consists of the following events:\n";
-        for(int i = 0;i<nextEvent;i++){
+        for(int i = 0;i<numEvents;i++){
             output += events[i].toString();
         }
         
@@ -101,5 +125,123 @@ public class Schedule {
         }
         
     }
+    
+
+    
+    /*
+    
+    public Schedule compare(Schedule other){
+        
+        int hours;
+        int minutes;
+        
+        // Make a new schedule
+        // Add both of the other schedules in
+        // Find free time from that schedule
+        
+        
+        TimeClass now = new TimeClass(6,0,30);
+        
+        for(int i = 12; i < 44; i++){   // Proceed in half-hour increments
+            hours = i / 2;
+            minutes = (i % 2) * 30;
+            now.setTime(hours, minutes, 30);
+            System.out.println("Current time is " + now);
+        }
+        
+        Events event1 = new Events("Sample Event", "M", hours, minutes,30);
+        Events[] eventlist = 
+        Schedule testSchedule = new Schedule("Sample Schedule", event1);
+        
+        
+    } 
+    
+    */
+    
+    public Schedule invert(){
+        
+        // Finds free time given a schedule
+        
+        Schedule freeTime = new Schedule("Free time from the schedule " + this.name);
+        Events nextEvent;
+        String day = ""; 
+        int index;
+        int nowMinutes;
+        
+        for(int i = 1; i<6; i++){
+            switch(i){
+                case 1:
+                    day = "M";
+                    break;
+                case 2:
+                    day = "TU";
+                    break;
+                case 3:
+                    day = "W";
+                    break;
+                case 4:
+                    day = "TH";
+                    break;
+                case 5:
+                    day = "F";
+                    break;           
+            }
+            
+            int duration;
+            
+            nowMinutes = 360;
+            index = 0;
+            
+            while(nowMinutes < 1320){
+                
+                // If there is none, make a new free time event from the current time ending at 22.
+
+                if(index == numEvents){
+                    duration = 1320 - nowMinutes;
+                    freeTime.addEventSeq(new Events("Free", day, nowMinutes / 60, nowMinutes % 60, duration));
+                    break;
+                }
+                
+                // Look at the next thing in the list
+                
+                nextEvent = events[index];
+                
+                // If it's not on the right day, ignore it
+                
+                if(nextEvent.occursOnDay(day)){
+                    
+                    // If its start time is before the current time
+                        
+                    if(nextEvent.getTime() < nowMinutes){
+                        // If its end time is before the current time, ignore it
+                        
+                        // If its end time is after the current time, jump to that end time
+                        
+                        if(nextEvent.getEnd() > nowMinutes){
+                            nowMinutes = nextEvent.getEnd();
+                        }
+                    }
+                    
+                    // If its start time is the current time, jump to its end time
+                    
+                    else if(nextEvent.getTime() == nowMinutes){
+                        nowMinutes = nextEvent.getEnd();
+                    }
+                    
+                    // If its start time is after the current time
+                    
+                    else{
+                        // Make a new free time event starting at the current time (on the current day) and ending at the start time of the next thing
+                        freeTime.addEventSeq(new Events("Free",day, nowMinutes/60, nowMinutes % 60, nextEvent.getTime() - nowMinutes));
+                        // Then jump to the end time of the next thing
+                        nowMinutes = nextEvent.getEnd();
+                    }   
+                }
+                index++;  
+            }   
+        }
+        return freeTime;  
+    } 
+    
     
 }

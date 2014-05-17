@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package scheduleproject;
 
 /**
@@ -40,19 +34,27 @@ public class ScheduleProject {
         System.out.println("Times 4 and 5 conflict?\n" + test4.compareTo(test5));
         System.out.println("Times 5 and 4 conflict?\n" + test5.compareTo(test4));
         
-        Events event1 = new Events("Tester", "MTW", 13, 30, 60);
+        Events event1 = new Events("Practice", "MTUW", 15, 0, 180);
         System.out.println(event1);
         
-        Course course1 = new Course("Data Structures", "MWF", 11, 0, 50, "Rahimi", "214","EECS");
+        Course course1 = new Course("Data Structures", "MWF", 11, 0, 60, "Rahimi", "214","EECS");
         System.out.println(course1);
         
         Schedule mySchedule = new Schedule("Jacob's Schedule");
         mySchedule.addEvent(event1);
         mySchedule.addEvent(course1);
+        
+        mySchedule.addEvent(new Course("Fundamentals of Solid State Engineering", "MTUWF", 9, 0, 60, "Aydin", "223", "EECS"));
+        mySchedule.addEvent(new Course("Introduction to AI", "MWF", 10, 0, 60, "Downey", "348", "EECS"));
+        mySchedule.addEvent(new Course("Fundamentals of Electromagnetics", "MTUWF", 13, 0, 60, "Taflove", "224", "EECS"));
+        
         System.out.println(mySchedule);
         
-        mySchedule.build();
-        System.out.println(mySchedule);
+        //mySchedule.build();
+        
+        Schedule jacobsFree = mySchedule.invert();
+        
+        System.out.println(jacobsFree);
         
     }
     

@@ -49,9 +49,6 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
         else if((time2.getTime()+time2.duration)>=this.getTime()&&(time2.getTime()+time2.duration)<=(this.getTime()+this.duration)){
             return 1;
         }
-        else if(time2.getTime()<=this.getTime()&&(time2.getTime()+time2.duration)>=(this.getTime()+this.duration)){
-            return 1;
-        }
         else return 0;
     }
 
@@ -69,6 +66,10 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
         return start;
     }
     
+    public int getEnd(){
+        return end;
+    }
+    
     @Override
     public String toString(){
         return convertTime();
@@ -78,24 +79,21 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
     public String convertTime() {
         
         String timeOutput = "";
-        int convertedHours;
-        int convertedMinutes;
         boolean startPM = false;
         boolean endPM = false;
         
-        if((hours*60 + minutes) > 720){
+        if((hours*60 + minutes) >= 720){
             startPM = true;
         }
-        if((hours*60 + minutes + duration) > 720){
+        if((hours*60 + minutes + duration) >= 720){
             endPM = true;
         }
         
-        if((start/60)!=12){
-            convertedHours = (start / 60)%12;
+        int convertedHours = (start / 60)%12; //since both are ints, you get an int
+        if(convertedHours == 0){
+            convertedHours = 12;
         }
-        else convertedHours = 12;
-        
-        convertedMinutes = start % 60;
+        int convertedMinutes = start % 60;
         
         timeOutput += "\nStart: " + String.format("%d:%02d", convertedHours, convertedMinutes);
         if(startPM){
@@ -103,12 +101,7 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
         }
         else timeOutput += " AM\n";
         
-        
-        if((end/60)!=12){
-            convertedHours = (end / 60)%12;
-        }
-        else convertedHours = 12;
-       
+        convertedHours = (end / 60)%12; //since both are ints, you get an int
         convertedMinutes = end % 60;
         
         timeOutput += "End: "  + String.format("%d:%02d", convertedHours, convertedMinutes);

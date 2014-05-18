@@ -23,6 +23,14 @@ public class Schedule {
         numEvents = e.length + 1;
     }
     
+    public String getName(){
+        return name;
+    }
+    
+    public int getNumber(){
+        return numEvents;
+    }
+    
     public void addEvent(Events e){
         
         Events listElement;
@@ -50,6 +58,10 @@ public class Schedule {
     public void addEventSeq(Events e){
         events[numEvents] = e;
         numEvents ++;
+    }
+    
+    public Events getEventByIndex(int index){
+        return events[index];
     }
     
     @Override
@@ -126,37 +138,19 @@ public class Schedule {
         
     }
     
-
-    
-    /*
-    
-    public Schedule compare(Schedule other){
+    public Schedule merge(Schedule other){
+        Schedule combo = new Schedule(this.name + " and " + other.getName());
         
-        int hours;
-        int minutes;
-        
-        // Make a new schedule
-        // Add both of the other schedules in
-        // Find free time from that schedule
-        
-        
-        TimeClass now = new TimeClass(6,0,30);
-        
-        for(int i = 12; i < 44; i++){   // Proceed in half-hour increments
-            hours = i / 2;
-            minutes = (i % 2) * 30;
-            now.setTime(hours, minutes, 30);
-            System.out.println("Current time is " + now);
+        for(int i = 0; i<numEvents; i++){   // Add all of the events from the first schedule
+            combo.addEvent(events[i]);
         }
         
-        Events event1 = new Events("Sample Event", "M", hours, minutes,30);
-        Events[] eventlist = 
-        Schedule testSchedule = new Schedule("Sample Schedule", event1);
+        for(int j = 0; j<other.getNumber(); j++){
+            combo.addEvent(other.getEventByIndex(j));
+        }
         
-        
-    } 
-    
-    */
+        return combo;
+    }
     
     public Schedule invert(){
         
@@ -243,5 +237,10 @@ public class Schedule {
         return freeTime;  
     } 
     
+    public Schedule bothFree(Schedule other){
+        Schedule s = this.merge(other);
+        s = s.invert();
+        return s;
+    }
     
 }

@@ -102,6 +102,9 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
         else timeOutput += " AM\n";
         
         convertedHours = (end / 60)%12; //since both are ints, you get an int
+        if(convertedHours == 0){
+            convertedHours = 12;
+        }
         convertedMinutes = end % 60;
         
         timeOutput += "End: "  + String.format("%d:%02d", convertedHours, convertedMinutes);

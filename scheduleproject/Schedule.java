@@ -38,13 +38,30 @@ public class Schedule implements java.io.Serializable{
         return name;
     }
     
-    public void setName(String n){
-        name = n;
-    }
-    
     public int getNumber(){
         return numEvents;
     }
+    
+     public void deleteEvent(int index){
+         
+         for(int i = index; i<numEvents; i++){
+             events[i]=events[i+1];
+             
+         }
+         numEvents--; //   Now one less event than previously before method call
+        
+    }
+    
+     public void clearCalendar(){
+         /*for(int i =0; i<numEvents;i++){
+             events[i] = null;
+         }
+         numEvents = 0;
+         */
+         
+         events = new Events[30];
+         numEvents = 0;
+     }
     
     public void addEvent(Events e){
         
@@ -77,6 +94,17 @@ public class Schedule implements java.io.Serializable{
     
     public Events getEventByIndex(int index){
         return events[index];
+    }
+    
+    public Events getEventByName (String s){
+        for( int i = 0; i< numEvents; i++){
+            if(events[i].getName().equals(s)){
+                return events[i];
+            }
+                
+        }
+        return events[numEvents-1];
+        
     }
     
     @Override

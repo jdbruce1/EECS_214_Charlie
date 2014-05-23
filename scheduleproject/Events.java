@@ -24,6 +24,15 @@ public class Events implements Comparable<Events>, java.io.Serializable {
         this.Time = new TimeClass(hours, minutes, duration);
     }
     
+        public Events(String name, String days, int startHours, int startMinutes, int endHours, int endMinutes)
+    // String days can be any of the enumerated
+    // types below
+    {
+        this.eventName = name;
+        this.Days = days;
+        this.Time = new TimeClass(startHours, startMinutes,endHours,endMinutes);
+    }
+    
     public enum DaysOfWeek {
         M, MTU, MTUW, MTUWTH, MTUWTHF, MTUWF, MTUTH, MTUTHF, MWF, MW, MWTH, MWTHF, 
         MTUF, MTH, MTHF, MF, W, WTH, WF, WS, F, TU, TUTH, TUWTH, TUWF, TUTHF, TUF, TH,

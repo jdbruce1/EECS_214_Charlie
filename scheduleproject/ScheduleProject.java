@@ -17,6 +17,7 @@ public class ScheduleProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         /*
         
         TimeClass test = new TimeClass(5, 30, 60);
@@ -77,16 +78,22 @@ public class ScheduleProject {
         
         Schedule bothFree = mySchedule.bothFree(evansSchedule);
         
-        //System.out.println(bothFree);
+        System.out.println(bothFree);
         
         */
-                
-        // And now, for some edge checking
         
-        TimeClass test = new TimeClass(21,0,120);
-        System.out.println(test);
+        // Testing timeclass
         
- 
+        TimeClass time1 = new TimeClass(9,30,10,30);
+        System.out.println(time1);
+        
+        TimeClass time2 = new TimeClass(9,30,60);
+        System.out.println(time2);
+        
+        TimeClass time3 = new TimeClass(21,30,22,0);
+        System.out.println(time3);
+        
+        
     }
     
 }

@@ -45,6 +45,21 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         this.start = hours*60 + minutes;
         this.end = this.start + duration;
     }
+    
+    public TimeClass(int startHours, int startMinutes, int endHours, int endMinutes){
+        if(startHours < 6 || endHours*60+endMinutes > 1320){
+            throw new IllegalArgumentException("Time must be between 6 AM and 10 PM.");
+        }        
+        if(!((startMinutes == 0 || startMinutes == 30) && (endMinutes == 0 || endMinutes == 30))){
+            throw new IllegalArgumentException("Please only use half-hour increments.");
+        }        
+        
+        this.hours = startHours;
+        this.minutes = startMinutes;
+        this.start = startHours * 60 + startMinutes;
+        this.end = endHours * 60 + endMinutes;
+        this.duration = this.end - this.start;
+    }
 
     @Override
     public int compareTo(TimeClass time2)

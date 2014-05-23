@@ -20,6 +20,16 @@ public class Course extends Events{
         this.department = department;
     }
     
+    public Course(String name, String days, int startHours, int startMinutes, int endHours, int endMinutes, String instructor, String number, String department)
+    // String days can be any of the enumerated
+    // types below 
+    {
+        super(name, days, startHours, startMinutes, endHours, endMinutes);
+        this.instructor = instructor;
+        this.number = number;
+        this.department = department;
+    }
+    
     @Override
     public String toString(){
         

@@ -5,12 +5,11 @@
  */
 
 package scheduleproject;
-
 /**
  *
  * @author Brownrout
  */
-public class Events implements Comparable<Events>{
+public class Events implements Comparable<Events>, java.io.Serializable {
     
     protected String eventName;
     protected String Days;

@@ -1,16 +1,23 @@
 
 package scheduleproject;
+import java.io.*;
 import java.util.Scanner;
 
 /**
  *
  * @author jacobbruce
  */
-public class Schedule {
+public class Schedule implements java.io.Serializable{
     protected String name;
     protected Events[] events;
     int numEvents;
 
+    public Schedule(){
+        name = "";
+        events = new Events[30];
+        numEvents = 0;
+    }
+    
     public Schedule(String n) {
         name = n;
         events = new Events[30];
@@ -242,5 +249,26 @@ public class Schedule {
         s = s.invert();
         return s;
     }
+    
+    /*
+    
+    public void writeSchedule(){
+        
+        try {
+            try (FileOutputStream file = new FileOutputStream("/tmp/schedule.ser"); ObjectOutputStream out = new ObjectOutputStream(file)) {
+                out.writeObject(this);
+            }
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        
+    }
+    
+    public void readSchedule(){
+        
+        
+        
+    }
+*/
     
 }

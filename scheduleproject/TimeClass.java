@@ -10,7 +10,7 @@ package scheduleproject;
  *
  * @author Brownrout
  */
-public class TimeClass implements Comparable<TimeClass>, TimeInterface {
+public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.Serializable {
 
     protected int hours;
     protected int minutes;
@@ -30,6 +30,15 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
     // 0 <= minutes <= 59
     // 30 <= duration <= 300
     public TimeClass(int hours, int minutes, int duration){
+        if(hours < 6 || hours+((duration+minutes)/60) > 22){
+            throw new IllegalArgumentException("Time must be between 6 AM and 10 PM.");
+        }
+        if(!(minutes == 0 || minutes == 30)){
+            throw new IllegalArgumentException("Please only use half-hour increments.");
+        }
+        if(duration % 30 != 0){
+            throw new IllegalArgumentException("Please only use half-hour time lengths.");
+        }
         this.hours = hours;
         this.minutes = minutes;
         this.duration = duration;
@@ -54,6 +63,12 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface {
 
     @Override
     public void setTime(int hours, int minutes, int duration) {
+        if(hours < 6 || hours+duration > 22){
+            throw new IllegalArgumentException("Time must be between 6 AM and 10 PM");
+        }
+        if(minutes < 0 || minutes > 60){
+            throw new IllegalArgumentException("Minutes must be between 0 and 60");
+        }
         this.hours = hours;
         this.minutes = minutes;
         this.duration = duration;

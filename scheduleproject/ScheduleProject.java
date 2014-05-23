@@ -1,5 +1,12 @@
 package scheduleproject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 /**
  *
  * @author jacobbruce
@@ -10,6 +17,8 @@ public class ScheduleProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*
+        
         TimeClass test = new TimeClass(5, 30, 60);
         System.out.println("Time 1 is:" + test);
         test.setTime(6, 0, 120);
@@ -68,8 +77,16 @@ public class ScheduleProject {
         
         Schedule bothFree = mySchedule.bothFree(evansSchedule);
         
-        System.out.println(bothFree);
+        //System.out.println(bothFree);
         
+        */
+                
+        // And now, for some edge checking
+        
+        TimeClass test = new TimeClass(21,0,120);
+        System.out.println(test);
+        
+ 
     }
     
 }

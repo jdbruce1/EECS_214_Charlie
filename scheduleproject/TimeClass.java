@@ -39,6 +39,9 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         if(duration % 30 != 0){
             throw new IllegalArgumentException("Please only use half-hour time lengths.");
         }
+        if(duration <= 0){
+            throw new IllegalArgumentException("Start must be later than end.");
+        }
         this.hours = hours;
         this.minutes = minutes;
         this.duration = duration;
@@ -52,7 +55,10 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         }        
         if(!((startMinutes == 0 || startMinutes == 30) && (endMinutes == 0 || endMinutes == 30))){
             throw new IllegalArgumentException("Please only use half-hour increments.");
-        }        
+        }
+        if(startHours * 60 + startMinutes >= endHours * 60 + endMinutes){
+            throw new IllegalArgumentException("Start must be before end.");
+        }
         
         this.hours = startHours;
         this.minutes = startMinutes;
@@ -96,8 +102,28 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         return start;
     }
     
+    public int getStartHours(){
+        return start / 60;
+    }
+    
+    public int getStartMinutes(){
+        return start % 60;
+    }
+    
+    public int getEndHours(){
+        return end / 60;
+    }
+    
+    public int getEndMinutes(){
+        return end % 60;
+    }
+    
     public int getEnd(){
         return end;
+    }
+    
+    public int getDuration(){
+        return duration;
     }
     
     @Override

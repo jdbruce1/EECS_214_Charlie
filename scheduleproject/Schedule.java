@@ -38,6 +38,10 @@ public class Schedule implements java.io.Serializable{
         return name;
     }
     
+    public void setName(String n){
+        name = n;
+    }
+    
     public int getNumber(){
         return numEvents;
     }

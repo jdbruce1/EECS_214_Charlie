@@ -24,7 +24,7 @@ public class Events implements Comparable<Events>, java.io.Serializable {
         this.Time = new TimeClass(hours, minutes, duration);
     }
     
-        public Events(String name, String days, int startHours, int startMinutes, int endHours, int endMinutes)
+    public Events(String name, String days, int startHours, int startMinutes, int endHours, int endMinutes)
     // String days can be any of the enumerated
     // types below
     {
@@ -49,10 +49,33 @@ public class Events implements Comparable<Events>, java.io.Serializable {
         return output;
     }
     
+    public String getName(){
+        return eventName;
+    }
+    
+    public String getDays(){
+        return Days;
+    }
+    
     public int getTime(){
         return Time.getTime();
     }
     
+    public int getStartHours(){
+        return Time.getStartHours();
+    }
+    
+    public int getStartMinutes(){
+        return Time.getStartMinutes();
+    }
+    
+    public int getEndHours(){
+        return Time.getEndHours();
+    }
+    
+    public int getEndMinutes(){
+        return Time.getEndMinutes();
+    }
     public int getEnd(){
         return Time.getEnd();
     }

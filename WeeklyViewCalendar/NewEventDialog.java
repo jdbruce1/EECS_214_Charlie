@@ -1,8 +1,9 @@
-package WeeklyViewCalendar;
+package weeklyviewcalendar;
 
 import javax.swing.*;
 
-import Events.Events;
+import scheduleproject.Events;
+import scheduleproject.Schedule;
 
 import java.awt.event.*;
 
@@ -11,17 +12,14 @@ public class NewEventDialog extends JDialog{
 	
 	// main container
     private JPanel dialogPanel;
-	
     // name of event label and fields
     private JLabel nameEventLabel;
     private JTextField nameEventField;
-    
 	// start and end time labels and fields
     private JLabel startTimeLabel;
-    private JFormattedTextField startTimeField;
+    private JComboBox<String> startTimeField;
     private JLabel endTimeLabel;
-    private JFormattedTextField endTimeField;
-
+    private JComboBox<String> endTimeField;
     // day of week label and inputs
     private JLabel dayWeekLabel;
     private JRadioButton monRadioButton;
@@ -30,11 +28,13 @@ public class NewEventDialog extends JDialog{
     private JRadioButton thuRadioButton;
     private JRadioButton friRadioButton;
     
+    private Schedule mySchedule;
     // create event button
     private JButton createEventButton;
     
     // constructor
-    NewEventDialog(){
+    NewEventDialog(Schedule s){
+    	mySchedule = s;
         dialogPanel = new JPanel();
         nameEventField = new JTextField();
         nameEventLabel = new JLabel();
@@ -48,8 +48,9 @@ public class NewEventDialog extends JDialog{
         dayWeekLabel = new JLabel();
         startTimeLabel = new JLabel();
         endTimeLabel = new JLabel();
-        startTimeField = new JFormattedTextField();
-        endTimeField = new JFormattedTextField();
+        
+        startTimeField = new JComboBox<String>(WeeklyCalFrame.TIMES);
+        endTimeField = new JComboBox<String>(WeeklyCalFrame.TIMES);
         createEventButton = new JButton();
         
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -57,7 +58,6 @@ public class NewEventDialog extends JDialog{
         this.setAlwaysOnTop(true);
 
         nameEventField.setText("Enter Name of Event");
-
         nameEventLabel.setText("Name of Event");
 
         monRadioButton.setText("Monday");
@@ -70,10 +70,7 @@ public class NewEventDialog extends JDialog{
         dayWeekLabel.setToolTipText("");
 
         startTimeLabel.setText("Start Time");
-        startTimeField.setText("Start time");
         endTimeLabel.setText("End Time");
-        endTimeField.setText("End Time");
-        
         
         // create the submit button and add an ActionListener (see below)
         createEventButton.setText("Create Event");
@@ -117,7 +114,7 @@ public class NewEventDialog extends JDialog{
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(friRadioButton)))))
-                  .addComponent(createEventButton))
+                    .addComponent(createEventButton))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,16 +161,20 @@ public class NewEventDialog extends JDialog{
         // end auto generated code
     }
     
-    // TODO properly implement the create event method
     private void createEventButtonActionPerformed(ActionEvent evt){    	
     	// prints current values of the buttons
     	System.out.println("Current Values:");
     	System.out.println(getCurrentValues());
     	
+    	// TODO error checking for times
+    	
     	// create and print an event
-    	Events newEvent = new Events(getName(), getActiveDays(), getHours(), getMinutes(), getDuration());
+    	Events newEvent = new Events(getName(), getActiveDays(), getStartHour(), getStartMinutes(), getEndHour(), getEndMinutes());
     	System.out.println("New event: ");
     	System.out.println(newEvent);
+    	
+    	mySchedule.addEvent(newEvent);
+    	System.out.println(mySchedule);
     	
     	// close dialog box on click of CreateEvent Button
     	this.setVisible(false);
@@ -186,8 +187,8 @@ public class NewEventDialog extends JDialog{
     public String getCurrentValues(){
     	StringBuilder s = new StringBuilder();
     	s.append(nameEventLabel.getText()).append(": ").append(getName()).append("\n");
-    	s.append(startTimeLabel.getText()).append(": ").append(startTimeField.getText()).append("\n");
-    	s.append(endTimeLabel.getText()).append(": ").append(endTimeField.getText()).append("\n");
+    	s.append(startTimeLabel.getText()).append(": ").append(startTimeField.getSelectedItem()).append("\n");
+    	s.append(endTimeLabel.getText()).append(": ").append(endTimeField.getSelectedItem()).append("\n");
    
     	s.append(monRadioButton.getText()).append(": ").append(monRadioButton.isSelected()).append("\n");
     	s.append(tueRadioButton.getText()).append(": ").append(tueRadioButton.isSelected()).append("\n");
@@ -225,18 +226,23 @@ public class NewEventDialog extends JDialog{
     	return s.toString();
     }
     
-    // TODO this doesn't return the correct value
-    public int getHours(){
-    	return Integer.parseInt(startTimeField.getText());
+    public int getStartHour(){
+    	int index = startTimeField.getSelectedIndex();
+    	return (index/2) + 6;
     }
     
-    //TODO implement
-    public int getMinutes(){
-    	return 0;
+    public int getStartMinutes(){
+    	int index = startTimeField.getSelectedIndex();
+    	return (index%2)*30;
     }
     
-    //TODO implement
-    public int getDuration(){
-    	return 60;
+    public int getEndHour(){
+    	int index = endTimeField.getSelectedIndex();
+    	return (index/2) + 6;
+    }
+    
+    public int getEndMinutes(){
+    	int index = endTimeField.getSelectedIndex();
+    	return (index%2)*30;
     }
 }

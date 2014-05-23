@@ -3,11 +3,18 @@
  * basic calendar view of a schedule, with ability to add a new event
  */
 
-package WeeklyViewCalendar;
-
+package weeklyviewcalendar;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+
+import scheduleproject.Schedule;
 
 /**
  *
@@ -15,6 +22,13 @@ import javax.swing.*;
  */
 @SuppressWarnings("serial")
 public class WeeklyCalFrame extends JFrame {
+	//TODO this is going to cause problems because you cannot make events after 10PM
+	public final static String TIMES[] = {"6:00 AM","6:30 AM","7:00 AM","7:30 AM","8:00 AM",
+			"8:30 AM","9:00 AM","9:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM","12:00 PM",
+			"12:30 PM","1:00 PM","1:30 PM","2:00 PM","2:30 PM","3:00 PM","3:30 PM","4:00 PM",
+			"4:30 PM","5:00 PM","5:30 PM","6:00 PM","6:30 PM","7:00 PM","7:30 PM","8:00 PM",
+			"8:30 PM","9:00 PM","9:30 PM","10:00 PM","10:30 PM","11:00 PM"}; 
+	
 	// Variables declaration - do not modify   
     
     private JPanel dayNamesCont;
@@ -30,19 +44,22 @@ public class WeeklyCalFrame extends JFrame {
     private JLabel[] dayLabels;
     private JLabel[] timeLabels;
     
-    private JSeparator[] separators;
+    //private JSeparator[] separators;
     
     // menu items
     private JMenu fileMenu;
     private JMenu editMenu;
     private JMenuBar menuCont;
     private JMenuItem newEvent;
+    
+    private Schedule mySchedule;
     // end of variables declaration
 
     /**
      * Creates new form WeeklyCalFrame
      */
-    public WeeklyCalFrame() {
+    public WeeklyCalFrame(Schedule s) {
+    	mySchedule = s;
         initComponents();
     }
     
@@ -52,18 +69,18 @@ public class WeeklyCalFrame extends JFrame {
         createMenu();
         initializeLabels();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(200, 230, 230));
+        setBackground(new Color(200, 230, 230));
         
         // Initialize separators
-        separators = new JSeparator[17];
+        /*separators = new JSeparator[17];
         for(int i = 0; i<separators.length; i++){
         	separators[i] = new JSeparator();
-        }
+        }*/
 
         // Monday panel initialization
         monPanel = new JPanel();
         initializePanel(monPanel);
-        GroupLayout mondayLayout = (GroupLayout) monPanel.getLayout();
+        /*GroupLayout mondayLayout = (GroupLayout) monPanel.getLayout();
 
         //TODO make this cleaner
         mondayLayout.setHorizontalGroup(
@@ -124,7 +141,7 @@ public class WeeklyCalFrame extends JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(separators[16], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
-        );
+        );*/
 
         // Tuesday panel initialization
         tuePanel = new JPanel();
@@ -282,46 +299,13 @@ public class WeeklyCalFrame extends JFrame {
     
     // action to be executed when the "new event" menu button is selected
     private void newEventActionPerformed(ActionEvent evt) {
-    	NewEventDialog newEventDialog = new NewEventDialog();
+    	NewEventDialog newEventDialog = new NewEventDialog(mySchedule);
         newEventDialog.setVisible(true);
         newEventDialog.setSize(newEventDialog.getPreferredSize());
-    }                                                                                   
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WeeklyCalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WeeklyCalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WeeklyCalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WeeklyCalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new WeeklyCalFrame().setVisible(true);
-            }
-        });
     }
     
+    
+    // create the menu bar
     private void createMenu(){
         menuCont = new JMenuBar();
         fileMenu = new JMenu();
@@ -330,10 +314,10 @@ public class WeeklyCalFrame extends JFrame {
         
         fileMenu.setText("File");
 
-        newEvent.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newEvent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
         newEvent.setText("New Event");
-        newEvent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        newEvent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 newEventActionPerformed(evt);
             }
         });
@@ -367,12 +351,18 @@ public class WeeklyCalFrame extends JFrame {
         	timeLabels[i] = new JLabel();
         	timeLabels[i].setHorizontalAlignment(SwingConstants.TRAILING);
         	timeLabels[i].setLabelFor(timeSideBarCont);
-        	timeLabels[i].setText(":"+i);
+        	timeLabels[i].setText(TIMES[2*i]);
         }
+        /*for(int i = 0; i<timeLabels.length; i++){
+        	timeLabels[i] = new JLabel();
+        	timeLabels[i].setHorizontalAlignment(SwingConstants.TRAILING);
+        	timeLabels[i].setLabelFor(timeSideBarCont);
+        	timeLabels[i].setText(":"+i);
+        }*/
     }
     
     private void initializePanel(JPanel panel){
-        panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
         layout.setHorizontalGroup(

@@ -1,14 +1,15 @@
-package weeklyviewcalendar;
+package WeeklyViewCalendar;
 
 import javax.swing.*;
 
 import scheduleproject.Events;
 import scheduleproject.Schedule;
+import java.awt.Color;
 
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class NewEventDialog extends JDialog{
+public class NewEventDialog extends JDialog {
 	
 	// main container
     private JPanel dialogPanel;
@@ -31,14 +32,16 @@ public class NewEventDialog extends JDialog{
     private Schedule mySchedule;
     // create event button
     private JButton createEventButton;
-    
+    //create reference to WeeklyCalFrame to get both gui elements to talk
+   private WeeklyCalFrame weeklyCalJFrame;
     // constructor
-    NewEventDialog(Schedule s){
+    NewEventDialog(Schedule s, WeeklyCalFrame frame){
     	mySchedule = s;
+        weeklyCalJFrame = frame;
         dialogPanel = new JPanel();
         nameEventField = new JTextField();
         nameEventLabel = new JLabel();
-        
+                
         monRadioButton = new JRadioButton();
         tueRadioButton = new JRadioButton();
         wedRadioButton = new JRadioButton();
@@ -176,8 +179,26 @@ public class NewEventDialog extends JDialog{
     	mySchedule.addEvent(newEvent);
     	System.out.println(mySchedule);
     	
+        //make Events visible on the gui
+        //Once Mon is debugged, it will be copied to the other days
+        if(monRadioButton.isSelected()){
+            weeklyCalJFrame.setMondayEvents(newEvent);
+        }
+        if(tueRadioButton.isSelected()){
+            weeklyCalJFrame.setTuesdayEvents(newEvent);
+        }
+        if(wedRadioButton.isSelected()){
+            weeklyCalJFrame.setWednesdayEvents(newEvent);
+        }
+        if(thuRadioButton.isSelected()){
+            weeklyCalJFrame.setThursdayEvents(newEvent);
+        }
+        if(friRadioButton.isSelected()){
+            weeklyCalJFrame.setFridayEvents(newEvent);
+        }
+        
     	// close dialog box on click of CreateEvent Button
-    	this.setVisible(false);
+    	this.setVisible(false);        
     }
     
     /**

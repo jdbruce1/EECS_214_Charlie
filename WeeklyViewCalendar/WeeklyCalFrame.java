@@ -15,7 +15,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import scheduleproject.Schedule;
-import scheduleproject.Events
+import scheduleproject.Events;
 
 
 /**
@@ -31,7 +31,10 @@ public class WeeklyCalFrame extends JFrame {
 			"4:30 PM","5:00 PM","5:30 PM","6:00 PM","6:30 PM","7:00 PM","7:30 PM","8:00 PM",
 			"8:30 PM","9:00 PM","9:30 PM","10:00 PM","10:30 PM","11:00 PM"}; 
 	
-        public final static int TIMES_INT[] = {6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11};
+        public final static int TIMES_INT[] = {6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
+        
+        public final static String USER_COLOR = "#8CE8f2";
+       
 	// Variables declaration - do not modify   
     
     private JPanel dayNamesCont;
@@ -545,6 +548,7 @@ public class WeeklyCalFrame extends JFrame {
         for(int i = 0; i<timeLabels.length; i++){
         	timeLabels[i] = new JLabel();
         	timeLabels[i].setHorizontalAlignment(SwingConstants.TRAILING);
+                timeLabels[i].setVerticalTextPosition(JLabel.TOP);
         	timeLabels[i].setLabelFor(timeSideBarCont);
         	timeLabels[i].setText(TIMES[2*i]);
         }
@@ -572,106 +576,86 @@ public class WeeklyCalFrame extends JFrame {
     //fuctions that display events visually 
     protected void setMondayEvents(Events event){
         
-        if(event.getStartHours() == TIMES_INT[0]
-           && event.Time.getTime() < 12){
- 
-            monEventLabels[0].setText(event.eventName);
-            monEventLabels[0].setBackground(Color.blue);
-            monEventLabels[0].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[1]){
-            monEventLabels[1].setText(event.eventName);
-            monEventLabels[1].setBackground(Color.blue);
-            monEventLabels[1].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[2]){
-            monEventLabels[2].setText(event.eventName);
-            monEventLabels[2].setBackground(Color.blue);
-            monEventLabels[2].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[3]){
-            monEventLabels[3].setText(event.eventName);
-            monEventLabels[3].setBackground(Color.blue);
-            monEventLabels[3].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[4]){
-            monEventLabels[4].setText(event.eventName);
-            monEventLabels[4].setBackground(Color.blue);
-            monEventLabels[4].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[5]){
-            monEventLabels[5].setText(event.eventName);
-            monEventLabels[5].setBackground(Color.blue);
-            monEventLabels[5].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[6]){
-            monEventLabels[6].setText(event.eventName);
-            monEventLabels[6].setBackground(Color.blue);
-            monEventLabels[6].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[7]){
-            monEventLabels[7].setText(event.eventName);
-            monEventLabels[7].setBackground(Color.blue);
-            monEventLabels[7].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[8]){
-            monEventLabels[8].setText(event.eventName);
-            monEventLabels[8].setBackground(Color.blue);
-            monEventLabels[8].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[9]){
-            monEventLabels[9].setText(event.eventName);
-            monEventLabels[9].setBackground(Color.blue);
-            monEventLabels[9].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[10]){
-            monEventLabels[10].setText(event.eventName);
-            monEventLabels[10].setBackground(Color.blue);
-            monEventLabels[10].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[11]){
-            monEventLabels[11].setText(event.eventName);
-            monEventLabels[11].setBackground(Color.blue);
-            monEventLabels[11].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[12]){
-            monEventLabels[12].setText(event.eventName);
-            monEventLabels[12].setBackground(Color.blue);
-            monEventLabels[12].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[13]){
-            monEventLabels[13].setText(event.eventName);
-            monEventLabels[13].setBackground(Color.blue);
-            monEventLabels[13].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[14]){
-            monEventLabels[14].setText(event.eventName);
-            monEventLabels[14].setBackground(Color.blue);
-            monEventLabels[14].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[15]){
-            monEventLabels[15].setText(event.eventName);
-            monEventLabels[15].setBackground(Color.blue);
-            monEventLabels[15].setOpaque(true);
-        }
-         if(event.getStartHours() == TIMES_INT[16]){
-            monEventLabels[16].setText(event.eventName);
-            monEventLabels[16].setBackground(Color.blue);
-            monEventLabels[16].setOpaque(true);
-        }
-        if(event.getStartHours() == TIMES_INT[17]){
-            monEventLabels[17].setText(event.eventName);
-            monEventLabels[17].setBackground(Color.blue);
-            monEventLabels[17].setOpaque(true);
-        }
+        int begI = event.Time.getStartHours()-6;
+        int endI = event.Time.getEndHours()-6;
+        boolean setTextInLabel = true;
         
+        for(int i = begI; i < endI; i++ ){
+            if(setTextInLabel){
+               monEventLabels[i].setText(event.eventName);
+               monEventLabels[i].setVerticalTextPosition(JLabel.TOP);
+               setTextInLabel = false;
+            }
+            monEventLabels[i].setBackground(Color.decode(USER_COLOR));
+            monEventLabels[i].setOpaque(true);
+        }
     }
     
-    protected void setTuesdayEvents(Events event){}
+    protected void setTuesdayEvents(Events event){
+         
+        int begI = event.Time.getStartHours()-6;
+        int endI = event.Time.getEndHours()-6;
+        boolean setTextInLabel = true;
+        
+        for(int i = begI; i < endI; i++ ){
+            if(setTextInLabel){
+               tuesEventLabels[i].setText(event.eventName);
+               tuesEventLabels[i].setVerticalTextPosition(JLabel.TOP);
+               setTextInLabel = false;
+            }
+            tuesEventLabels[i].setBackground(Color.decode(USER_COLOR));
+            tuesEventLabels[i].setOpaque(true);
+        }
+    }
     
-    protected void setWednesdayEvents(Events event){}
+    protected void setWednesdayEvents(Events event){
+         
+        int begI = event.Time.getStartHours()-6;
+        int endI = event.Time.getEndHours()-6;
+        boolean setTextInLabel = true;
+        
+        for(int i = begI; i < endI; i++ ){
+            if(setTextInLabel){
+               wedEventLabels[i].setText(event.eventName);
+               wedEventLabels[i].setVerticalTextPosition(JLabel.TOP);
+               setTextInLabel = false;
+            }
+            wedEventLabels[i].setBackground(Color.decode(USER_COLOR));
+            wedEventLabels[i].setOpaque(true);
+        }
+    }
     
-    protected void setThursdayEvents(Events event){}
+    protected void setThursdayEvents(Events event){
+         
+        int begI = event.Time.getStartHours()-6;
+        int endI = event.Time.getEndHours()-6;
+        boolean setTextInLabel = true;
+        
+        for(int i = begI; i < endI; i++ ){
+            if(setTextInLabel){
+               thurEventLabels[i].setText(event.eventName);
+               thurEventLabels[i].setVerticalTextPosition(JLabel.TOP);
+               setTextInLabel = false;
+            }
+            thurEventLabels[i].setBackground(Color.decode(USER_COLOR));
+            thurEventLabels[i].setOpaque(true);
+        }
+    }
     
-    protected void setFridayEvents(Events event){}
+    protected void setFridayEvents(Events event){
+     
+        int begI = event.Time.getStartHours()-6;
+        int endI = event.Time.getEndHours()-6;
+        boolean setTextInLabel = true;
+        
+        for(int i = begI; i < endI; i++ ){
+            if(setTextInLabel){
+               friEventLabels[i].setText(event.eventName);
+               friEventLabels[i].setVerticalTextPosition(JLabel.TOP);
+               setTextInLabel = false;
+            }
+            friEventLabels[i].setBackground(Color.decode(USER_COLOR));
+            friEventLabels[i].setOpaque(true);
+        }
+    }
 }

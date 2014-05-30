@@ -85,7 +85,7 @@ public class Events implements Comparable<Events>, java.io.Serializable {
     }
     
     @Override
-    public int compareTo(Events e){
+    public int compareTo(Events e){     // Compares times of events for purpose of ordering them.
         if (this.getTime()<e.getTime()){
             return -1;
         }

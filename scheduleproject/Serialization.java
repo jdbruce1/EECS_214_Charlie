@@ -29,10 +29,10 @@ public class Serialization {
         
     }
     
-    public void serialize(String s, Schedule s1){
+    public void serialize(String fileName, Schedule s1){    // Serializes object and outputs it to specified file.
         try{    
-        filename = s;
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(s));
+        filename = fileName;
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
             out.writeObject(s1);
             out.close();
             
@@ -49,9 +49,9 @@ public class Serialization {
         
 
 
-    public Schedule Deserialize (String s){
+    public Schedule Deserialize (String fileName){  // Gets serialized schedule from specified file and returns it
     try{
-            FileInputStream door = new FileInputStream(s);
+            FileInputStream door = new FileInputStream(fileName);
             ObjectInputStream reader = new ObjectInputStream(door);
             Schedule x = new Schedule();
             x = (Schedule) reader.readObject();

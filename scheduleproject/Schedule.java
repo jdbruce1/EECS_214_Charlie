@@ -42,7 +42,7 @@ public class Schedule implements java.io.Serializable{
         return numEvents;
     }
     
-     public void deleteEvent(int index){
+     public void deleteEvent(int index){    // Deletes the indicated event by index.
          
          for(int i = index; i<numEvents; i++){
              events[i]=events[i+1];
@@ -52,7 +52,7 @@ public class Schedule implements java.io.Serializable{
         
     }
     
-     public void clearCalendar(){
+     public void clearCalendar(){   // Clears all events from the calendar
          /*for(int i =0; i<numEvents;i++){
              events[i] = null;
          }
@@ -63,7 +63,7 @@ public class Schedule implements java.io.Serializable{
          numEvents = 0;
      }
     
-    public void addEvent(Events e){
+    public void addEvent(Events e){ // Adds the new event in time order (into an ordered list by time)
         
         Events listElement;
         int location = 0;
@@ -87,7 +87,7 @@ public class Schedule implements java.io.Serializable{
         
     }
     
-    public void addEventSeq(Events e){
+    public void addEventSeq(Events e){      // Adds the new event in order of adding, an unsorted list
         events[numEvents] = e;
         numEvents ++;
     }
@@ -103,8 +103,7 @@ public class Schedule implements java.io.Serializable{
             }
                 
         }
-        return events[numEvents-1];
-        
+        throw new RuntimeException("There is no event with this name.");
     }
     
     @Override
@@ -122,7 +121,7 @@ public class Schedule implements java.io.Serializable{
         return output;
     }
     
-    public void build(){
+    public void build(){        // Text based interface for building schedule
         
         System.out.println("\nAdding events to your schedule.\n");
         
@@ -181,7 +180,7 @@ public class Schedule implements java.io.Serializable{
         
     }
     
-    public Schedule merge(Schedule other){
+    public Schedule merge(Schedule other){      // Adds two schedules together.
         Schedule combo = new Schedule(this.name + " and " + other.getName());
         
         for(int i = 0; i<numEvents; i++){   // Add all of the events from the first schedule
@@ -195,7 +194,7 @@ public class Schedule implements java.io.Serializable{
         return combo;
     }
     
-    public Schedule invert(){
+    public Schedule invert(){       // Inverts a schedule to find the free time from it
         
         // Finds free time given a schedule
         
@@ -280,7 +279,7 @@ public class Schedule implements java.io.Serializable{
         return freeTime;  
     } 
     
-    public Schedule bothFree(Schedule other){
+    public Schedule bothFree(Schedule other){   // Merges two schedules, then inverts them, to find the time they're both free.
         Schedule s = this.merge(other);
         s = s.invert();
         return s;

@@ -63,6 +63,8 @@ public class WeeklyCalFrame extends JFrame {
     private JMenu editMenu;
     private JMenuBar menuCont;
     private JMenuItem newEvent;
+    private JMenuItem loadSched;
+    private JMenuItem saveSched;
     
     private Schedule mySchedule;
     // end of variables declaration
@@ -509,6 +511,8 @@ public class WeeklyCalFrame extends JFrame {
         fileMenu = new JMenu();
         newEvent = new JMenuItem();
         editMenu = new JMenu();
+		  loadSched = new JMenuItem();
+        saveSched = new JMenuItem();
         
         fileMenu.setText("File");
 
@@ -520,6 +524,44 @@ public class WeeklyCalFrame extends JFrame {
             }
         });
         fileMenu.add(newEvent);
+        
+        loadSched.setText("Load a Schedule");
+        loadSched.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showOpenDialog(WeeklyCalFrame.this);
+
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                	File file = fc.getSelectedFile();
+                	Serialization s = new Serialization();
+                	System.out.println(file.getPath());
+                	mySchedule = s.Deserialize(file.getPath());
+                }
+            }
+        });
+        fileMenu.add(loadSched);
+        
+        
+        saveSched.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+        saveSched.setText("Save Schedule");
+        saveSched.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showSaveDialog(WeeklyCalFrame.this);
+                
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                	File file = fc.getSelectedFile();
+                	try {
+							file.createNewFile();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	Serialization s = new Serialization();
+                	s.serialize(file.getPath()+".sch", mySchedule);
+                }
+            }
+        });
+        fileMenu.add(saveSched);
 
         menuCont.add(fileMenu);
 

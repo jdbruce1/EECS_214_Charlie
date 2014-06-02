@@ -240,7 +240,7 @@ public class NewEventDialog extends JDialog {
     		s.append("M");
     	}
     	if(tueRadioButton.isSelected()){
-    		s.append("T");
+    		s.append("TU");
     	}
     	if(wedRadioButton.isSelected()){
     		s.append("W");

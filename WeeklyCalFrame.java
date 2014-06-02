@@ -11,13 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-
-import scheduleproject.Schedule;
 import scheduleproject.Events;
+import scheduleproject.Schedule;
 
 
 /**
@@ -65,6 +66,8 @@ public class WeeklyCalFrame extends JFrame {
     private JMenu editMenu;
     private JMenuBar menuCont;
     private JMenuItem newEvent;
+    private JMenuItem loadSched;
+    private JMenuItem saveSched;
     private JMenuItem compare;
     
     protected int colorIndex;
@@ -517,11 +520,34 @@ public class WeeklyCalFrame extends JFrame {
     
     private void compareActionPerformed(ActionEvent e){
         
+        
+        
+        Schedule otherSchedule;
+        Schedule freeTime;
+        
         // Call load method to use file picker to load in a schedule
+        
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(WeeklyCalFrame.this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            Serialization s = new Serialization();
+            System.out.println(file.getPath());
+            otherSchedule = s.Deserialize(file.getPath());
+        }
+        else{
+            otherSchedule = new Schedule();
+        }
+        
         
         // Compare the two schedules, resulting in a schedule
         
+        freeTime = mySchedule.bothFree(otherSchedule);
+        
         // Example comparison:
+        
+        /*
         
         Events event1 = new Events("Practice", "MTUW", 15, 0, 180);
         
@@ -543,9 +569,11 @@ public class WeeklyCalFrame extends JFrame {
         evansSchedule.addEvent(new Course("Sustainability", "TUTH", 15, 30, 90, "Faculty", "230", "ISEN"));
         evansSchedule.addEvent(new Course("Physics Lab", "M",14,0,60,"TA","135-3","Physics"));
                 
-        Schedule bothFree = mySchedule.bothFree(evansSchedule);
-                
-        Events events[] = bothFree.getEvents();
+        Schedule freeTime = mySchedule.bothFree(evansSchedule);
+        
+        */
+        
+        Events events[] = freeTime.getEvents();
         
         int i = 0;
         
@@ -574,7 +602,35 @@ public class WeeklyCalFrame extends JFrame {
         }
         
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void renderSchedule(){
+        Events[] events = mySchedule.getEvents();
+        int i = 0;
+        while (events[i] != null) {
+            if (events[i].occursOnDay("M")) {
+                this.setMondayEvents(events[i], colorIndex);
+            }
+            if (events[i].occursOnDay("TU")) {
+                this.setTuesdayEvents(events[i], colorIndex);
+            }
+            if (events[i].occursOnDay("W")) {
+                this.setWednesdayEvents(events[i], colorIndex);
+            }
+            if (events[i].occursOnDay("TH")) {
+                this.setThursdayEvents(events[i], colorIndex);
+            }
+            if (events[i].occursOnDay("F")) {
+                this.setFridayEvents(events[i], colorIndex);
+            }
+            if(colorIndex < 8){
+                colorIndex++;
+            }
+            else
+                colorIndex = 0;
+            i++;
+        }
     }
     
     // create the menu bar
@@ -583,6 +639,8 @@ public class WeeklyCalFrame extends JFrame {
         fileMenu = new JMenu();
         newEvent = new JMenuItem();
         editMenu = new JMenu();
+        loadSched = new JMenuItem();
+        saveSched = new JMenuItem();
         compare = new JMenuItem();
         
         fileMenu.setText("File");
@@ -595,6 +653,49 @@ public class WeeklyCalFrame extends JFrame {
             }
         });
         fileMenu.add(newEvent);
+
+               
+        loadSched.setText("Load a Schedule");
+        loadSched.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showOpenDialog(WeeklyCalFrame.this);
+
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    Serialization s = new Serialization();
+                    System.out.println(file.getPath());
+                    mySchedule = s.Deserialize(file.getPath());
+                    
+                    renderSchedule();
+                    
+                }
+            }
+        });
+        fileMenu.add(loadSched);
+        
+        
+        saveSched.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+        saveSched.setText("Save Schedule");
+        saveSched.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showSaveDialog(WeeklyCalFrame.this);
+                
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    Serialization s = new Serialization();
+                    s.serialize(file.getPath()+".sch", mySchedule);
+                }
+            }
+        });
+        fileMenu.add(saveSched);
+
 
         compare.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
         compare.setText("Compare to...");

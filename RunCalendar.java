@@ -24,7 +24,7 @@ public class RunCalendar {
     public static void main(String args[]) {
     	
     	final Schedule sched = new Schedule();
-    	sched.addEvent(new Events("gym","MWF",11,30, 90));
+    	//sched.addEvent(new Events("gym","MWF",11,30, 90));
     	Events e[] = sched.getEvents();
     	/*for(int i = 0; i<e.length; i++){
     		System.out.println(e[i]);

@@ -23,7 +23,7 @@ public class courseTokenizer {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static ArrayList<ArrayList<String>> main(String[] args) {
         // TODO code application logic here
         //FileInputStream fileInputStream = null;
         //InputStreamReader inputStreamReader = null;
@@ -78,8 +78,7 @@ public class courseTokenizer {
                 // PUSH INPUTTOQUEUE.GET(K) TO MEDIA QUEUE
         };
         
-        System.out.println(inputToQueue.get(0));
-    }
+        return inputToQueue;
     
 }
 

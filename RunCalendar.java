@@ -14,7 +14,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import scheduleproject.Schedule;
-import scheduleproject.CourseTokenizer;
 
 public class RunCalendar {
 

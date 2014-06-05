@@ -5,12 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Austin
  */
 public class CourseTokenizer {
+	private static final Logger logger = Logger.getLogger(CourseTokenizer.class.getName());
 
 	/**
 	 * @return the array list of events 
@@ -28,21 +31,20 @@ public class CourseTokenizer {
 				if (read != null){
 					String[] splited = read.split("\\$|\\|");
 					for (String part : splited) {
-						//System.out.println(part);
 						if (!part.equals(""))
 							script.add(part);
 					}
 				};
 			}
 		} catch (IOException e) {
-			System.out.println("The following error was generated: " + e);
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "The following error was generated: " + e);
+			logger.log(Level.SEVERE, e.getStackTrace().toString());
 		} finally {
 			try {
 				in.close();
 			}catch (Exception e) {
-				System.out.println("The following error was generated: " + e);
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "The following error was generated: " + e);
+				logger.log(Level.SEVERE, e.getStackTrace().toString());
 			}
 		}
 		// parse the input array to create the list of actual classes

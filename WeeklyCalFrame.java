@@ -14,6 +14,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -28,16 +30,9 @@ import scheduleproject.Schedule;
  */
 @SuppressWarnings("serial")
 public class WeeklyCalFrame extends JFrame {
+	private static final Logger logger = Logger.getLogger(WeeklyCalFrame.class.getName());
+	
 	//TODO this is going to cause problems because you cannot make events after 10PM
-	public final static String TIMES[] = {"6:00 AM","6:30 AM","7:00 AM","7:30 AM","8:00 AM",
-		"8:30 AM","9:00 AM","9:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM","12:00 PM",
-		"12:30 PM","1:00 PM","1:30 PM","2:00 PM","2:30 PM","3:00 PM","3:30 PM","4:00 PM",
-		"4:30 PM","5:00 PM","5:30 PM","6:00 PM","6:30 PM","7:00 PM","7:30 PM","8:00 PM",
-		"8:30 PM","9:00 PM","9:30 PM","10:00 PM","10:30 PM","11:00 PM"}; 
-
-	public final static int TIMES_INT[] = {6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
-
-	public final static String USER_COLOR[] = {"#8CE8f2", "#CC66FF","#CC0000","#66FF33","#CC9900","#3333FF","#FF00FF","#FF6600", "#009933"};
 
 	// Variables declaration - do not modify   
 
@@ -690,7 +685,7 @@ public class WeeklyCalFrame extends JFrame {
 
 	// action to be executed when the "new event" menu button is selected
 	private void newEventActionPerformed(ActionEvent evt) {
-		NewEventDialog newEventDialog = new NewEventDialog(mySchedule, this);
+		NewEventDialog newEventDialog = new NewEventDialog(WeeklyCalFrame.this);
 		if(colorIndex < 8){
 			colorIndex ++;
 		}
@@ -707,9 +702,6 @@ public class WeeklyCalFrame extends JFrame {
 	}
 
 	private void compareActionPerformed(ActionEvent e){
-
-
-
 		Schedule otherSchedule;
 		Schedule freeTime;
 
@@ -720,9 +712,8 @@ public class WeeklyCalFrame extends JFrame {
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
-			Serialization s = new Serialization();
-			System.out.println(file.getPath());
-			otherSchedule = s.Deserialize(file.getPath());
+			logger.log(Level.INFO, "Opening " + file.getPath() + "/" + file.getName());
+			otherSchedule = Schedule.deserialize(file.getPath());
 		}
 		else{
 			otherSchedule = new Schedule();
@@ -830,9 +821,8 @@ public class WeeklyCalFrame extends JFrame {
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					Serialization s = new Serialization();
-					System.out.println(file.getPath());
-					mySchedule = s.Deserialize(file.getPath());
+					logger.log(Level.INFO, "Loading schedule from " + file.getPath() + "/" + file.getName());
+					mySchedule = Schedule.deserialize(file.getPath());
 
 					renderSchedule();
 					setTitle(mySchedule.getName());
@@ -856,8 +846,8 @@ public class WeeklyCalFrame extends JFrame {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					Serialization s = new Serialization();
-					s.serialize(file.getPath()+".sch", mySchedule);
+					logger.log(Level.INFO, "Saving schedule to " + file.getPath() + "/" + file.getName());
+					mySchedule.serialize(file.getPath()+".sch");
 				}
 			}
 		});
@@ -880,7 +870,7 @@ public class WeeklyCalFrame extends JFrame {
 		addClass.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddClassDialog classDialog = new AddClassDialog(mySchedule, WeeklyCalFrame.this, classList);
+				AddClassDialog classDialog = new AddClassDialog(WeeklyCalFrame.this, classList);
 				classDialog.setVisible(true);
 				classDialog.setSize(classDialog.getPreferredSize());			}
 		});
@@ -915,7 +905,7 @@ public class WeeklyCalFrame extends JFrame {
 			timeLabels[i].setHorizontalAlignment(SwingConstants.TRAILING);
 			timeLabels[i].setVerticalTextPosition(JLabel.TOP);
 			timeLabels[i].setLabelFor(timeSideBarCont);
-			timeLabels[i].setText(TIMES[2*i]);
+			timeLabels[i].setText(Constants.TIMES[2*i]);
 		}
 	}
 
@@ -933,7 +923,7 @@ public class WeeklyCalFrame extends JFrame {
 				);
 	}
 	//fuctions that display events visually 
-	protected void setMondayEvents(Events event, int index){
+	private void setMondayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
 		int endI = event.Time.getEnd()/30 - 12;
@@ -945,12 +935,12 @@ public class WeeklyCalFrame extends JFrame {
 				monEventLabels[i].setVerticalTextPosition(JLabel.TOP);
 				setTextInLabel = false;
 			}
-			monEventLabels[i].setBackground(Color.decode(USER_COLOR[index]));
+			monEventLabels[i].setBackground(Color.decode(Constants.USER_COLOR[index]));
 			monEventLabels[i].setOpaque(true);
 		}
 	}
 
-	protected void setTuesdayEvents(Events event, int index){
+	private void setTuesdayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
 		int endI = event.Time.getEnd()/30 - 12;
@@ -962,12 +952,12 @@ public class WeeklyCalFrame extends JFrame {
 				tuesEventLabels[i].setVerticalTextPosition(JLabel.TOP);
 				setTextInLabel = false;
 			}
-			tuesEventLabels[i].setBackground(Color.decode(USER_COLOR[index]));
+			tuesEventLabels[i].setBackground(Color.decode(Constants.USER_COLOR[index]));
 			tuesEventLabels[i].setOpaque(true);
 		}
 	}
 
-	protected void setWednesdayEvents(Events event, int index){
+	private void setWednesdayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
 		int endI = event.Time.getEnd()/30 - 12;
@@ -979,12 +969,12 @@ public class WeeklyCalFrame extends JFrame {
 				wedEventLabels[i].setVerticalTextPosition(JLabel.TOP);
 				setTextInLabel = false;
 			}
-			wedEventLabels[i].setBackground(Color.decode(USER_COLOR[index]));
+			wedEventLabels[i].setBackground(Color.decode(Constants.USER_COLOR[index]));
 			wedEventLabels[i].setOpaque(true);
 		}
 	}
 
-	protected void setThursdayEvents(Events event, int index){
+	private void setThursdayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
 		int endI = event.Time.getEnd()/30 - 12;
@@ -996,12 +986,12 @@ public class WeeklyCalFrame extends JFrame {
 				thurEventLabels[i].setVerticalTextPosition(JLabel.TOP);
 				setTextInLabel = false;
 			}
-			thurEventLabels[i].setBackground(Color.decode(USER_COLOR[index]));
+			thurEventLabels[i].setBackground(Color.decode(Constants.USER_COLOR[index]));
 			thurEventLabels[i].setOpaque(true);
 		}
 	}
 
-	protected void setFridayEvents(Events event, int index){
+	private void setFridayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
 		int endI = event.Time.getEnd()/30 - 12;
@@ -1013,7 +1003,7 @@ public class WeeklyCalFrame extends JFrame {
 				friEventLabels[i].setVerticalTextPosition(JLabel.TOP);
 				setTextInLabel = false;
 			}
-			friEventLabels[i].setBackground(Color.decode(USER_COLOR[index]));
+			friEventLabels[i].setBackground(Color.decode(Constants.USER_COLOR[index]));
 			friEventLabels[i].setOpaque(true);
 		}
 	}
@@ -1033,5 +1023,27 @@ public class WeeklyCalFrame extends JFrame {
 			friEventLabels[i].setText("");
 
 		}
+	}
+	
+	public void addEvent(Events evt, int clrI){
+        if(evt.getDays().contains("M")){
+            this.setMondayEvents(evt,clrI);
+        }
+        if(evt.getDays().contains("TU")){
+            this.setTuesdayEvents(evt,clrI);
+        }
+        if(evt.getDays().contains("W")){
+            this.setWednesdayEvents(evt,clrI);
+        }
+        if(evt.getDays().contains("Th")){
+            this.setThursdayEvents(evt,clrI);
+        }
+        if(evt.getDays().contains("F")){
+            this.setFridayEvents(evt,clrI);
+        }
+	}
+	
+	public Schedule getScheduleFromFrame(){
+		return mySchedule;
 	}
 }

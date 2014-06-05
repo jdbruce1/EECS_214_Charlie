@@ -14,7 +14,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import scheduleproject.Schedule;
-import scheduleproject.courseTokenizer;
+import scheduleproject.CourseTokenizer;
 
 public class RunCalendar {
 
@@ -22,16 +22,8 @@ public class RunCalendar {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    	System.out.println(courseTokenizer.parseCourses());
     	final Schedule sched = new Schedule();
-    	//sched.addEvent(new Events("gym","MWF",11,30, 90));
-    	Events e[] = sched.getEvents();
-    	/*for(int i = 0; i<e.length; i++){
-    		System.out.println(e[i]);
-    	}
-    	
-    	System.out.println(WeeklyCalFrame.TIMES.length);
-        */
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

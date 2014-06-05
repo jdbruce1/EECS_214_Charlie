@@ -731,31 +731,7 @@ public class WeeklyCalFrame extends JFrame {
         
         // Example comparison:
         
-        /*
-        
-        Events event1 = new Events("Practice", "MTUW", 15, 0, 180);
-        
-        Course course1 = new Course("Data Structures", "MWF", 11, 0, 60, "Rahimi", "214","EECS");
-        
-        Schedule mySchedule = new Schedule("Jacob's Schedule");
-        mySchedule.addEvent(event1);
-        mySchedule.addEvent(course1);
-        
-        mySchedule.addEvent(new Course("Fundamentals of Solid State Engineering", "MTUWF", 9, 0, 60, "Aydin", "223", "EECS"));
-        mySchedule.addEvent(new Course("Introduction to AI", "MWF", 10, 0, 60, "Downey", "348", "EECS"));
-        mySchedule.addEvent(new Course("Fundamentals of Electromagnetics", "MTUWF", 13, 0, 60, "Taflove", "224", "EECS"));
-        mySchedule.addEvent(new Course("Solid State Lab","TH",15,0,180,"Cui","223","EECS"));
-        
-        Schedule evansSchedule = new Schedule("Evan's Schedule");
-        evansSchedule.addEvent(new Course("Separations", "MTUWF", 9, 0, 60, "Snurr", "212", "CHEM_ENG"));
-        evansSchedule.addEvent(new Course("Waves", "MWTHF", 11, 0, 60, "Brown", "135-3", "PHYSICS"));
-        evansSchedule.addEvent(new Course("Life Cycle Assessment", "TUF", 14, 0, 90, "Masonet", "395", "CHEM_ENG"));
-        evansSchedule.addEvent(new Course("Sustainability", "TUTH", 15, 30, 90, "Faculty", "230", "ISEN"));
-        evansSchedule.addEvent(new Course("Physics Lab", "M",14,0,60,"TA","135-3","Physics"));
-                
-        Schedule freeTime = mySchedule.bothFree(evansSchedule);
-        
-        */
+        this.setTitle(freeTime.getName());
         
         Events events[] = freeTime.getEvents();
         
@@ -841,7 +817,9 @@ public class WeeklyCalFrame extends JFrame {
                
         loadSched.setText("Load a Schedule");
         loadSched.addActionListener(new ActionListener() {
+            
             public void actionPerformed(ActionEvent evt) {
+                clearSchedule();
                 JFileChooser fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(WeeklyCalFrame.this);
 
@@ -852,7 +830,7 @@ public class WeeklyCalFrame extends JFrame {
                     mySchedule = s.Deserialize(file.getPath());
                     
                     renderSchedule();
-                    
+                    setTitle(mySchedule.getName());
                 }
             }
         });
@@ -889,6 +867,7 @@ public class WeeklyCalFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearSchedule();
+                
                 compareActionPerformed(e);
                 
             }
@@ -1035,16 +1014,16 @@ public class WeeklyCalFrame extends JFrame {
     
     protected void clearSchedule(){
         
-        for(int i = 0; i < monEventLabels.length; i++){
-            monEventLabels[i].setOpaque(false);
+        for(int i = 0; i < 36; i++){
+            monEventLabels[i].setBackground(Color.decode("#D6D9DF"));
             monEventLabels[i].setText("");
-            tuesEventLabels[i].setOpaque(false);
+            tuesEventLabels[i].setBackground(Color.decode("#D6D9DF"));
             tuesEventLabels[i].setText("");
-            wedEventLabels[i].setOpaque(false);
+            wedEventLabels[i].setBackground(Color.decode("#D6D9DF"));
             wedEventLabels[i].setText("");
-            thurEventLabels[i].setOpaque(false);
+            thurEventLabels[i].setBackground(Color.decode("#D6D9DF"));
             thurEventLabels[i].setText("");
-            friEventLabels[i].setOpaque(false);
+            friEventLabels[i].setBackground(Color.decode("#D6D9DF"));
             friEventLabels[i].setText("");
             
         }

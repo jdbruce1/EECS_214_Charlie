@@ -39,8 +39,6 @@ public class Course extends Events{
         output += "Days: " + this.Days;
         output += this.Time.toString();
         
-        return output;
-        
+        return output;   
     }
-    
 }

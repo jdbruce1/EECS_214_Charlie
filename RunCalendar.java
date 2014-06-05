@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import scheduleproject.Events;
 import scheduleproject.Schedule;
+import scheduleproject.courseTokenizer;
 
 public class RunCalendar {
 
@@ -22,7 +22,7 @@ public class RunCalendar {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    	
+    	System.out.println(courseTokenizer.parseCourses());
     	final Schedule sched = new Schedule();
     	//sched.addEvent(new Events("gym","MWF",11,30, 90));
     	Events e[] = sched.getEvents();
@@ -63,4 +63,3 @@ public class RunCalendar {
         });
     }
 }
-

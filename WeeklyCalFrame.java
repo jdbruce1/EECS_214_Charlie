@@ -17,7 +17,7 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-import scheduleproject.Events;
+
 import scheduleproject.Schedule;
 
 

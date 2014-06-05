@@ -8,10 +8,9 @@ package scheduleproject;
 
 import javax.swing.*;
 
-import scheduleproject.Events;
 import scheduleproject.Schedule;
-import java.awt.Color;
 
+import java.awt.Color;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")

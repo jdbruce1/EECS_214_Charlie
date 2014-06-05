@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package scheduleproject;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,65 +12,53 @@ import java.util.List;
  */
 public class courseTokenizer {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static ArrayList<ArrayList<String>> main(String[] args) {
-        // TODO code application logic here
-        //FileInputStream fileInputStream = null;
-        //InputStreamReader inputStreamReader = null;
-        //BufferedReader bufferedReader = null;
-        
-        //String[] result = "this is a test".split("\\s");
-        //for (int x=0; x<result.length; x++)
-        //System.out.println(result[x]);
-        
-        BufferedReader in = null;
-        List<String> script = new ArrayList<String>();
-        try {
-        in = new BufferedReader(new FileReader("fallCourses.txt"));
-        String read = null;
-        while ((read = in.readLine()) != null) {
-            read = in.readLine();
-            if (read != null){
-            String[] splited = read.split("\\$|\\|");
-            for (String part : splited) {
-                //System.out.println(part);
-                if (!part.equals(""))
-                    script.add(part);
-            }
-            };
-        }
-    } catch (IOException e) {
-        System.out.println("There was a problem: " + e);
-        e.printStackTrace();
-    } finally {
-        try {
-            in.close();
-        } catch (Exception e) {
-        }
-    }
-        
-        System.out.println(script);
-        
-        // Creates the list of actual inputs to be pushed onto the queue
-        ArrayList<ArrayList<String>> inputToQueue = new ArrayList<ArrayList<String>>();
-        for (int k = 0; k < (script.size()/4)-2; k++){
-            ArrayList<String> individualInput = new ArrayList<String>();
-            individualInput.add(script.get(k*4));
-            individualInput.add(script.get(k*4+1));
-            individualInput.add(script.get(k*4+2));
-            individualInput.add(script.get(k*4+3));
-            inputToQueue.add(individualInput);
-            //inputToQueue.add(inputs.get(k*4)+" "+inputs.get((k*4)+1)+" "+
-                    //inputs.get(k*4+2)+" "+inputs.get(k*4+3));
-            //if (inputs.get(k*4) == "line")
-                // PUSH INPUTTOQUEUE.GET(K) TO LINE QUEUE
-            //else if (inputs.get(k*4) == "media")
-                // PUSH INPUTTOQUEUE.GET(K) TO MEDIA QUEUE
-        };
-        
-        return inputToQueue;
-    
-}
+	/**
+	 * @return the array list of events 
+	 */
+	public static ArrayList<Events> parseCourses() {
+		// read the text file and store as an array
+		BufferedReader in = null;
+		List<String> script = new ArrayList<String>();
+		try {
+			//TODO this may cause issues in the future. the fallCourses.txt file must be in the main project folder 
+			in = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/fallCourses.txt"));
+			String read = null;
+			while ((read = in.readLine()) != null) {
+				read = in.readLine();
+				if (read != null){
+					String[] splited = read.split("\\$|\\|");
+					for (String part : splited) {
+						//System.out.println(part);
+						if (!part.equals(""))
+							script.add(part);
+					}
+				};
+			}
+		} catch (IOException e) {
+			System.out.println("The following error was generated: " + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				in.close();
+			}catch (Exception e) {
+				System.out.println("The following error was generated: " + e);
+				e.printStackTrace();
+			}
+		}
 
+		// parse the input array to create the list of actual classes
+		ArrayList<Events> classArray = new ArrayList<Events>();
+		for (int k = 0; k < (script.size()/4)-2; k++){
+			// parse the text for event data
+			String name = script.get(k*4);
+			String days = script.get(k*4+1);
+			String time = script.get(k*4+3);
+			int colon = time.indexOf(":");
+			Integer hours = Integer.parseInt(time.substring(0, colon));
+			Integer minutes = Integer.parseInt(time.substring(colon+1));
+			Integer duration = Integer.parseInt(script.get(k*4+2));
+			classArray.add(new Events(name, days, hours, minutes, duration));
+		};       
+		return classArray;
+	}
+}

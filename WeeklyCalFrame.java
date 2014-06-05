@@ -80,7 +80,10 @@ public class WeeklyCalFrame extends JFrame {
      */
     public WeeklyCalFrame(Schedule s) {
     	mySchedule = s;
+        String name = JOptionPane.showInputDialog("What is your name?");
+        mySchedule.setName(name + "'s Schedule");
         initComponents();
+        this.setTitle(s.getName());
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
@@ -92,11 +95,11 @@ public class WeeklyCalFrame extends JFrame {
         setBackground(new Color(200, 230, 230));
         
         // Initialize event labels
-        monEventLabels = new JLabel[18];
-        tuesEventLabels = new JLabel[18];
-        wedEventLabels = new JLabel[18];
-        thurEventLabels = new JLabel[18];
-        friEventLabels = new JLabel[18];
+        monEventLabels = new JLabel[36];
+        tuesEventLabels = new JLabel[36];
+        wedEventLabels = new JLabel[36];
+        thurEventLabels = new JLabel[36];
+        friEventLabels = new JLabel[36];
         
         colorIndex = 0;
         
@@ -134,28 +137,64 @@ public class WeeklyCalFrame extends JFrame {
             .addComponent(monEventLabels[15], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(monEventLabels[16], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(monEventLabels[17], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[18], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[19], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[20], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[21], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[22], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[23], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[24], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[25], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[26], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[27], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[28], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[29], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[30], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[31], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[32], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(monEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         mondayLayout.setVerticalGroup(
             mondayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(mondayLayout.createSequentialGroup()
-                .addComponent(monEventLabels[0], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[1], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[2], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[3], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[4], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[5], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[6], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[7], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[8], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[9], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[10], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[11], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[12], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[13], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[14], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[15], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[16], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(monEventLabels[17], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[1], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[2], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[3], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[4], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[5], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[6], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[7], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[8], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[9], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[10], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[11], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[12], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[13], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[14], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[15], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[16], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[17], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[18], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[19], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[20], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[21], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[22], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[23], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[24], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[25], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[26], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[27], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[28], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[29], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[30], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[31], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[32], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[33], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                .addComponent(monEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
                 
             ));
 
@@ -185,28 +224,64 @@ public class WeeklyCalFrame extends JFrame {
             .addComponent(tuesEventLabels[15], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(tuesEventLabels[16], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(tuesEventLabels[17], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[18], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[19], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[20], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[21], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[22], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[23], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[24], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[25], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[26], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[27], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[28], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[29], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[30], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[31], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[32], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(tuesEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         tuesdayLayout.setVerticalGroup(
             tuesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(tuesdayLayout.createSequentialGroup()
-                .addComponent(tuesEventLabels[0], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[1], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[2], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[3], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[4], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[5], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[6], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[7], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[8], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[9], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[10], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[11], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[12], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[13], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[14], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[15], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[16], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(tuesEventLabels[17], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[1], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[2], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[3], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[4], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[5], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[6], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[7], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[8], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[9], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[10], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[11], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[12], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[13], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[14], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[15], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[16], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[17], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[18], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[19], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[20], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[21], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[22], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[23], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[24], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[25], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[26], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[27], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[28], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[29], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[30], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[31], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[32], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[33], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(tuesEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
                
             ));
 
@@ -236,28 +311,65 @@ public class WeeklyCalFrame extends JFrame {
             .addComponent(wedEventLabels[15], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(wedEventLabels[16], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(wedEventLabels[17], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[18], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[19], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[20], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[21], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[22], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[23], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[24], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[25], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[26], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[27], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[28], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[29], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[30], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[31], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[32], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(wedEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+
         );
         wednesdayLayout.setVerticalGroup(
             wednesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(wednesdayLayout.createSequentialGroup()
-                .addComponent(wedEventLabels[0], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[1], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[2], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[3], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[4], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[5], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[6], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[7], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[8], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[9], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[10], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[11], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[12], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[13], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[14], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[15], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[16], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(wedEventLabels[17], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[1], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[2], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[3], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[4], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[5], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[6], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[7], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[8], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[9], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[10], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[11], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[12], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[13], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[14], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[15], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[16], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[17], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[18], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[19], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[20], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[21], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[22], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[23], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[24], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[25], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[26], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[27], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[28], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[29], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[30], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[31], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[32], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[33], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(wedEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
                
             ));
 
@@ -287,28 +399,64 @@ public class WeeklyCalFrame extends JFrame {
             .addComponent(thurEventLabels[15], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(thurEventLabels[16], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(thurEventLabels[17], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[18], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[19], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[20], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[21], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[22], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[23], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[24], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[25], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[26], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[27], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[28], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[29], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[30], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[31], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[32], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(thurEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         thursdayLayout.setVerticalGroup(
             thursdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(thursdayLayout.createSequentialGroup()
-                .addComponent(thurEventLabels[0], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[1], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[2], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[3], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[4], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[5], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[6], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[7], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[8], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[9], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[10], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[11], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[12], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[13], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[14], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[15], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[16], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(thurEventLabels[17], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[1], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[2], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[3], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[4], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[5], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[6], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[7], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[8], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[9], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[10], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[11], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[12], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[13], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[14], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[15], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[16], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[17], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[18], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[19], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[20], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[21], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[22], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[23], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[24], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[25], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[26], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[27], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[28], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[29], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[30], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[31], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[32], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[33], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(thurEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
                 
             ));
         
@@ -338,28 +486,64 @@ public class WeeklyCalFrame extends JFrame {
             .addComponent(friEventLabels[15], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(friEventLabels[16], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addComponent(friEventLabels[17], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[18], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[19], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[20], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[21], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[22], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[23], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[24], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[25], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[26], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[27], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[28], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[29], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[30], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[31], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[32], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(friEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         fridayLayout.setVerticalGroup(
             fridayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(fridayLayout.createSequentialGroup()
-                .addComponent(friEventLabels[0], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[1], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[2], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[3], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[4], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[5], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[6], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[7], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[8], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[9], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[10], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[11], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[12], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[13], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[14], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[15], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[16], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                .addComponent(friEventLabels[17], GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+            .addComponent(friEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[1], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[2], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[3], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[4], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[5], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[6], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[7], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[8], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[9], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[10], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[11], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[12], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[13], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[14], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[15], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[16], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[17], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[18], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[19], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[20], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[21], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[22], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[23], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[24], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[25], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[26], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[27], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[28], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[29], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[30], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[31], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[32], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[33], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+            .addComponent(friEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
         );
         
 
@@ -547,31 +731,7 @@ public class WeeklyCalFrame extends JFrame {
         
         // Example comparison:
         
-        /*
-        
-        Events event1 = new Events("Practice", "MTUW", 15, 0, 180);
-        
-        Course course1 = new Course("Data Structures", "MWF", 11, 0, 60, "Rahimi", "214","EECS");
-        
-        Schedule mySchedule = new Schedule("Jacob's Schedule");
-        mySchedule.addEvent(event1);
-        mySchedule.addEvent(course1);
-        
-        mySchedule.addEvent(new Course("Fundamentals of Solid State Engineering", "MTUWF", 9, 0, 60, "Aydin", "223", "EECS"));
-        mySchedule.addEvent(new Course("Introduction to AI", "MWF", 10, 0, 60, "Downey", "348", "EECS"));
-        mySchedule.addEvent(new Course("Fundamentals of Electromagnetics", "MTUWF", 13, 0, 60, "Taflove", "224", "EECS"));
-        mySchedule.addEvent(new Course("Solid State Lab","TH",15,0,180,"Cui","223","EECS"));
-        
-        Schedule evansSchedule = new Schedule("Evan's Schedule");
-        evansSchedule.addEvent(new Course("Separations", "MTUWF", 9, 0, 60, "Snurr", "212", "CHEM_ENG"));
-        evansSchedule.addEvent(new Course("Waves", "MWTHF", 11, 0, 60, "Brown", "135-3", "PHYSICS"));
-        evansSchedule.addEvent(new Course("Life Cycle Assessment", "TUF", 14, 0, 90, "Masonet", "395", "CHEM_ENG"));
-        evansSchedule.addEvent(new Course("Sustainability", "TUTH", 15, 30, 90, "Faculty", "230", "ISEN"));
-        evansSchedule.addEvent(new Course("Physics Lab", "M",14,0,60,"TA","135-3","Physics"));
-                
-        Schedule freeTime = mySchedule.bothFree(evansSchedule);
-        
-        */
+        this.setTitle(freeTime.getName());
         
         Events events[] = freeTime.getEvents();
         
@@ -657,7 +817,9 @@ public class WeeklyCalFrame extends JFrame {
                
         loadSched.setText("Load a Schedule");
         loadSched.addActionListener(new ActionListener() {
+            
             public void actionPerformed(ActionEvent evt) {
+                clearSchedule();
                 JFileChooser fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(WeeklyCalFrame.this);
 
@@ -668,7 +830,7 @@ public class WeeklyCalFrame extends JFrame {
                     mySchedule = s.Deserialize(file.getPath());
                     
                     renderSchedule();
-                    
+                    setTitle(mySchedule.getName());
                 }
             }
         });
@@ -704,6 +866,8 @@ public class WeeklyCalFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                clearSchedule();
+                
                 compareActionPerformed(e);
                 
             }
@@ -765,8 +929,8 @@ public class WeeklyCalFrame extends JFrame {
     //fuctions that display events visually 
     protected void setMondayEvents(Events event, int index){
         
-        int begI = event.Time.getStartHours()-6;
-        int endI = event.Time.getEndHours()-6;
+        int begI = event.Time.getTime()/30 - 12;
+        int endI = event.Time.getEnd()/30 - 12;
         boolean setTextInLabel = true;
         
         for(int i = begI; i < endI; i++ ){
@@ -782,8 +946,8 @@ public class WeeklyCalFrame extends JFrame {
     
     protected void setTuesdayEvents(Events event, int index){
          
-        int begI = event.Time.getStartHours()-6;
-        int endI = event.Time.getEndHours()-6;
+        int begI = event.Time.getTime()/30 - 12;
+        int endI = event.Time.getEnd()/30 - 12;
         boolean setTextInLabel = true;
         
         for(int i = begI; i < endI; i++ ){
@@ -799,8 +963,8 @@ public class WeeklyCalFrame extends JFrame {
     
     protected void setWednesdayEvents(Events event, int index){
          
-        int begI = event.Time.getStartHours()-6;
-        int endI = event.Time.getEndHours()-6;
+        int begI = event.Time.getTime()/30 - 12;
+        int endI = event.Time.getEnd()/30 - 12;
         boolean setTextInLabel = true;
         
         for(int i = begI; i < endI; i++ ){
@@ -816,8 +980,8 @@ public class WeeklyCalFrame extends JFrame {
     
     protected void setThursdayEvents(Events event, int index){
          
-        int begI = event.Time.getStartHours()-6;
-        int endI = event.Time.getEndHours()-6;
+        int begI = event.Time.getTime()/30 - 12;
+        int endI = event.Time.getEnd()/30 - 12;
         boolean setTextInLabel = true;
         
         for(int i = begI; i < endI; i++ ){
@@ -833,8 +997,8 @@ public class WeeklyCalFrame extends JFrame {
     
     protected void setFridayEvents(Events event, int index){
      
-        int begI = event.Time.getStartHours()-6;
-        int endI = event.Time.getEndHours()-6;
+        int begI = event.Time.getTime()/30 - 12;
+        int endI = event.Time.getEnd()/30 - 12;
         boolean setTextInLabel = true;
         
         for(int i = begI; i < endI; i++ ){
@@ -845,6 +1009,23 @@ public class WeeklyCalFrame extends JFrame {
             }
             friEventLabels[i].setBackground(Color.decode(USER_COLOR[index]));
             friEventLabels[i].setOpaque(true);
+        }
+    }
+    
+    protected void clearSchedule(){
+        
+        for(int i = 0; i < 36; i++){
+            monEventLabels[i].setBackground(Color.decode("#D6D9DF"));
+            monEventLabels[i].setText("");
+            tuesEventLabels[i].setBackground(Color.decode("#D6D9DF"));
+            tuesEventLabels[i].setText("");
+            wedEventLabels[i].setBackground(Color.decode("#D6D9DF"));
+            wedEventLabels[i].setText("");
+            thurEventLabels[i].setBackground(Color.decode("#D6D9DF"));
+            thurEventLabels[i].setText("");
+            friEventLabels[i].setBackground(Color.decode("#D6D9DF"));
+            friEventLabels[i].setText("");
+            
         }
     }
 }

@@ -45,7 +45,6 @@ public class courseTokenizer {
 				e.printStackTrace();
 			}
 		}
-
 		// parse the input array to create the list of actual classes
 		ArrayList<Events> classArray = new ArrayList<Events>();
 		for (int k = 0; k < (script.size()/4)-2; k++){

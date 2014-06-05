@@ -30,6 +30,10 @@ public class Schedule implements java.io.Serializable{
         numEvents = e.length + 1;
     }
     
+    public void setName(String n){
+        name = n;
+    }
+    
     public Events[] getEvents(){
         return events;
     }

@@ -10,21 +10,15 @@ package scheduleproject;
  *
  * @author Brownrout
  */
-public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.Serializable {
-
+@SuppressWarnings("serial")
+public class TimeClass implements Comparable<TimeClass>, java.io.Serializable {
+	// begin variable declarations
     protected int hours;
     protected int minutes;
     protected int duration;
     protected int start;
     protected int end;
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void driver(String[] args) {
-        // TODO code application logic here
-    }
+    // end variable declarations
     
     // 6 <= hours <= 22
     // 0 <= minutes <= 59
@@ -82,7 +76,6 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         else return 0;
     }
 
-    @Override
     public void setTime(int hours, int minutes, int duration) {
         if(hours < 6 || hours+duration > 22){
             throw new IllegalArgumentException("Time must be between 6 AM and 10 PM");
@@ -97,7 +90,6 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         this.end = this.start + duration;
     }
 
-    @Override
     public int getTime() {
         return start;
     }
@@ -131,7 +123,6 @@ public class TimeClass implements Comparable<TimeClass>, TimeInterface, java.io.
         return convertTime();
     }
 
-    @Override
     public String convertTime() {
         
         String timeOutput = "";

@@ -4,6 +4,7 @@ package scheduleproject;
  *
  * @author jacobbruce
  */
+@SuppressWarnings("serial")
 public class Course extends Events{
     
     protected String instructor;

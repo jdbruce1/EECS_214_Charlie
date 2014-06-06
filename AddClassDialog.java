@@ -2,8 +2,6 @@ package scheduleproject;
 
 import javax.swing.*;
 
-import scheduleproject.Schedule;
-
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -15,6 +13,7 @@ import java.util.logging.Logger;
  *
  */
 
+@SuppressWarnings("serial")
 public class AddClassDialog extends JDialog{
 	private static final Logger logger = Logger.getLogger(AddClassDialog.class.getName());
 	// variable declarations

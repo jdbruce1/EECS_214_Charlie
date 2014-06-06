@@ -11,6 +11,7 @@ package scheduleproject;
  *
  * @author Brownrout
  */
+@SuppressWarnings("serial")
 public class Events implements Comparable<Events>, java.io.Serializable {
     
     protected String eventName;

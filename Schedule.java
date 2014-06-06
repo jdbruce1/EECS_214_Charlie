@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,6 +13,7 @@ import java.util.logging.Logger;
  *
  * @author jacobbruce
  */
+@SuppressWarnings("serial")
 public class Schedule implements java.io.Serializable{
 	private static final Logger logger = Logger.getLogger(Schedule.class.getName());
 
@@ -77,13 +77,12 @@ public class Schedule implements java.io.Serializable{
 	}
 
 	public void addEvent(Events e){ // Adds the new event in time order (into an ordered list by time)
-
 		Events listElement;
 		int location = 0;
 
 		while(location < numEvents){
 			listElement = (Events) events[location];
-			if(((Comparable)listElement).compareTo(e) < 0){
+			if(listElement.compareTo(e) < 0){
 				location ++;
 			}
 			else{
@@ -97,7 +96,6 @@ public class Schedule implements java.io.Serializable{
 
 		events[location] = e;
 		numEvents++;
-
 	}
 
 	public void addEventSeq(Events e){      // Adds the new event in order of adding, an unsorted list
@@ -132,65 +130,6 @@ public class Schedule implements java.io.Serializable{
 		}
 
 		return output;
-	}
-
-	public void build(){        // Text based interface for building schedule
-
-		logger.log(Level.INFO, "Adding events to your schedule.");
-
-		OUTER:
-			while (true) {
-				Scanner inputScan = new Scanner(System.in);
-				System.out.println("\nIs your event a class? (y/n, s to stop)\n");
-				String quest = inputScan.nextLine();
-				switch (quest) {
-				case "s":
-					break OUTER;
-				case "y":
-				{
-					System.out.println("\nWhat is the title of the class? (not the course number)\n");
-					String title = inputScan.nextLine();
-					System.out.println("\nWhat department is the class in?\n");
-					String department = inputScan.nextLine();
-					System.out.println("\nWhat is the class number?\n");
-					String number = inputScan.nextLine();
-					System.out.println("\nWho teaches the class?\n");
-					String instructor = inputScan.nextLine();
-					System.out.println("\nWhat days of the week does it happen? (MTWTHF)\n");
-					String days = inputScan.nextLine();
-					System.out.println("\nWhat time does it start? (24 hr time) \n");
-					int startTime = inputScan.nextInt();
-					int hour = startTime / 100;
-					int minutes = startTime % 100;
-					System.out.println("\nHow long does it go for? (In minutes)\n");
-					int duration = inputScan.nextInt();
-
-					this.addEvent(new Course(title, days, hour, minutes, duration,instructor, number,department));
-
-					System.out.println("\nEvent successfully added. Do you want to add another event to your schedule? (y/n)\n");
-					break;
-				}
-				default:
-				{
-					System.out.println("\nWhat is the title of the event?\n");
-					String title = inputScan.nextLine();
-					System.out.println("\nWhat days of the week does it happen? (MTWTHF)\n");
-					String days = inputScan.nextLine();
-					System.out.println("\nWhat time does it start? (24 hr time) \n");
-					int startTime = inputScan.nextInt();
-					int hour = startTime / 100;
-					int minutes = startTime % 100;
-					System.out.println("\nHow long does it go for? (In minutes)\n");
-					int duration = inputScan.nextInt();
-
-					this.addEvent(new Events(title, days, hour, minutes, duration));
-
-					System.out.println("\nEvent successfully added. Do you want to add another event to your schedule? (y/n)\n");
-					break;
-				}
-				}
-			}
-
 	}
 
 	public Schedule merge(Schedule other){      // Adds two schedules together.
@@ -309,9 +248,7 @@ public class Schedule implements java.io.Serializable{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			out = new ObjectOutputStream(bos);
 			out.writeObject(this);
-
-			byte[] buf = bos.toByteArray();
-		} catch(IOException e){
+		}catch(IOException e){
 		}finally{
 			try{
 				out.close();

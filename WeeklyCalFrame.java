@@ -32,10 +32,7 @@ import scheduleproject.Schedule;
 public class WeeklyCalFrame extends JFrame {
 	private static final Logger logger = Logger.getLogger(WeeklyCalFrame.class.getName());
 	
-	//TODO this is going to cause problems because you cannot make events after 10PM
-
-	// Variables declaration - do not modify   
-
+	// Variables declaration - do not modify
 	private JPanel dayNamesCont;
 	private JPanel timeSideBarCont;
 
@@ -115,7 +112,6 @@ public class WeeklyCalFrame extends JFrame {
 		initializePanel(monPanel);
 		GroupLayout mondayLayout = (GroupLayout) monPanel.getLayout();
 
-		//TODO make this cleaner
 		mondayLayout.setHorizontalGroup(
 				mondayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(monEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -694,11 +690,6 @@ public class WeeklyCalFrame extends JFrame {
 		}
 		newEventDialog.setVisible(true);
 		newEventDialog.setSize(newEventDialog.getPreferredSize());
-
-		//proof of concept for displaying events
-		//TODO pass event labels to dialog box constructor
-
-
 	}
 
 	private void compareActionPerformed(ActionEvent e){
@@ -808,7 +799,7 @@ public class WeeklyCalFrame extends JFrame {
 				newEventActionPerformed(evt);
 			}
 		});
-		fileMenu.add(newEvent);
+		editMenu.add(newEvent);
 
 
 		loadSched.setText("Load a Schedule");
@@ -880,7 +871,6 @@ public class WeeklyCalFrame extends JFrame {
 
 		editMenu.setText("Edit");
 		menuCont.add(editMenu);
-		//TODO get add schedule file dialog box to read in serialized schedules
 		setJMenuBar(menuCont);
 	}
 

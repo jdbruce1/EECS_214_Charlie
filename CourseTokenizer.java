@@ -58,6 +58,7 @@ public class CourseTokenizer {
 			Integer hours = Integer.parseInt(time.substring(0, colon));
 			Integer minutes = Integer.parseInt(time.substring(colon+1));
 			Integer duration = Integer.parseInt(script.get(k*4+2));
+			// create new event and add it to the array
 			classArray.add(new Events(name, days, hours, minutes, duration));
 		};       
 		return classArray;

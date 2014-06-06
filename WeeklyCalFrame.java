@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.*;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
@@ -112,7 +114,14 @@ public class WeeklyCalFrame extends JFrame {
 		initializePanel(monPanel);
 		GroupLayout mondayLayout = (GroupLayout) monPanel.getLayout();
 
-		mondayLayout.setHorizontalGroup(
+		ParallelGroup monHoriGroup = mondayLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
+		monHoriGroup.addComponent(monEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+		for(int i = 1; i<monEventLabels.length; i++){
+			monHoriGroup.addComponent(monEventLabels[i], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE);
+		}
+		System.out.println("Default:" + GroupLayout.DEFAULT_SIZE);
+		mondayLayout.setHorizontalGroup(monHoriGroup);
+		/*mondayLayout.setHorizontalGroup(
 				mondayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(monEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				.addComponent(monEventLabels[1], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
@@ -150,8 +159,15 @@ public class WeeklyCalFrame extends JFrame {
 				.addComponent(monEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(monEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(monEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-				);
+				);*/
+		SequentialGroup monVertGroup = mondayLayout.createSequentialGroup();
+		for(int i = 0; i<monEventLabels.length; i++){
+			monVertGroup.addComponent(monEventLabels[i], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE);
+		}
 		mondayLayout.setVerticalGroup(
+				mondayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(monVertGroup));
+		/*mondayLayout.setVerticalGroup(
 				mondayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(mondayLayout.createSequentialGroup()
 						.addComponent(monEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
@@ -191,7 +207,7 @@ public class WeeklyCalFrame extends JFrame {
 						.addComponent(monEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(monEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 
-						));
+						));*/
 
 		// Tuesday panel initialization
 		tuePanel = new JPanel();
@@ -862,6 +878,12 @@ public class WeeklyCalFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddClassDialog classDialog = new AddClassDialog(WeeklyCalFrame.this, classList);
+				if(colorIndex < 8){
+					colorIndex ++;
+				}
+				else{
+					colorIndex = 0;
+				}
 				classDialog.setVisible(true);
 				classDialog.setSize(classDialog.getPreferredSize());			}
 		});
@@ -1015,21 +1037,21 @@ public class WeeklyCalFrame extends JFrame {
 		}
 	}
 	
-	public void addEvent(Events evt, int clrI){
+	public void addEvent(Events evt, int colorI){
         if(evt.getDays().contains("M")){
-            this.setMondayEvents(evt,clrI);
+            this.setMondayEvents(evt,colorI);
         }
         if(evt.getDays().contains("TU")){
-            this.setTuesdayEvents(evt,clrI);
+            this.setTuesdayEvents(evt,colorI);
         }
         if(evt.getDays().contains("W")){
-            this.setWednesdayEvents(evt,clrI);
+            this.setWednesdayEvents(evt,colorI);
         }
         if(evt.getDays().contains("Th")){
-            this.setThursdayEvents(evt,clrI);
+            this.setThursdayEvents(evt,colorI);
         }
         if(evt.getDays().contains("F")){
-            this.setFridayEvents(evt,clrI);
+            this.setFridayEvents(evt,colorI);
         }
 	}
 	

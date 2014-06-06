@@ -65,6 +65,8 @@ public class WeeklyCalFrame extends JFrame {
 	private JMenuItem saveSched;
 	private JMenuItem compare;
 	private JMenuItem addClass;
+        private JMenuItem addSched;
+        private JMenuItem invert;
 
 	protected int colorIndex;
 
@@ -731,8 +733,6 @@ public class WeeklyCalFrame extends JFrame {
 
 		freeTime = mySchedule.bothFree(otherSchedule);
 
-		// Example comparison:
-
 		this.setTitle(freeTime.getName());
 
 		Events events[] = freeTime.getEvents();
@@ -767,9 +767,32 @@ public class WeeklyCalFrame extends JFrame {
 		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	private void renderSchedule(){
+        private void addSchedActionPerformed(ActionEvent e){
+            Schedule otherSchedule;
+            
+            JFileChooser fc = new JFileChooser();
+		int returnVal = fc.showOpenDialog(WeeklyCalFrame.this);
+
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			logger.log(Level.INFO, "Opening " + file.getPath() + "/" + file.getName());
+			otherSchedule = Schedule.deserialize(file.getPath());
+		}
+		else{
+			otherSchedule = new Schedule();
+		}
+                
+            mySchedule.merge(otherSchedule);
+            clearSchedule();
+            renderSchedule(0);
+        }
+        
+	private void renderSchedule(int option){
 		Events[] events = mySchedule.getEvents();
 		int i = 0;
+                if(option == 1){
+                    colorIndex = 8;
+                }
 		while (events[i] != null) {
 			if (events[i].occursOnDay("M")) {
 				this.setMondayEvents(events[i], colorIndex);
@@ -786,11 +809,11 @@ public class WeeklyCalFrame extends JFrame {
 			if (events[i].occursOnDay("F")) {
 				this.setFridayEvents(events[i], colorIndex);
 			}
-			if(colorIndex < 8){
-				colorIndex++;
+			if(colorIndex < 8 && option ==0){
+                            colorIndex++;
 			}
-			else
-				colorIndex = 0;
+                        else if(option == 0)
+                            colorIndex = 0;
 			i++;
 		}
 	}
@@ -805,6 +828,8 @@ public class WeeklyCalFrame extends JFrame {
 		saveSched = new JMenuItem();
 		compare = new JMenuItem();
 		addClass = new JMenuItem();
+                addSched = new JMenuItem();
+                invert = new JMenuItem();
 
 		fileMenu.setText("File");
 
@@ -831,7 +856,7 @@ public class WeeklyCalFrame extends JFrame {
 					logger.log(Level.INFO, "Loading schedule from " + file.getPath() + "/" + file.getName());
 					mySchedule = Schedule.deserialize(file.getPath());
 
-					renderSchedule();
+					renderSchedule(0);
 					setTitle(mySchedule.getName());
 				}
 			}
@@ -872,6 +897,31 @@ public class WeeklyCalFrame extends JFrame {
 			}
 		});
 		
+                addSched.setText("Add a saved schedule");
+                fileMenu.add(addSched);
+                addSched.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        addSchedActionPerformed(e);
+                        setTitle(mySchedule.getName());
+                    }
+                });
+                
+                invert.setText("Find free time");
+                fileMenu.add(invert);
+                invert.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        clearSchedule();
+                        mySchedule = mySchedule.invert();
+                        renderSchedule(1);
+                        setTitle(mySchedule.getName());
+                    }
+                });
+                
+                
 		addClass.setText("Add a class");
 		editMenu.add(addClass);
 		addClass.addActionListener(new ActionListener(){

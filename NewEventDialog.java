@@ -164,7 +164,11 @@ public class NewEventDialog extends JDialog {
 	private void createEventButtonActionPerformed(ActionEvent evt){    	
 
 		// TODO error checking for times
-
+                if((getStartHour() + getStartMinutes()) > getEndHour() + getEndMinutes())
+                {
+                    JOptionPane.showMessageDialog(calFrame, "Please make sure your start time is before your end time");
+                }
+                else{
 		// create and print an event
 		Events newEvent = new Events(getName(), getActiveDays(), getStartHour(), getStartMinutes(), getEndHour(), getEndMinutes());
 		calFrame.getScheduleFromFrame().addEvent(newEvent);
@@ -175,7 +179,8 @@ public class NewEventDialog extends JDialog {
 		calFrame.addEvent(newEvent,colorIndex);
 
 		// close dialog box on click of CreateEvent Button
-		this.setVisible(false);        
+		this.setVisible(false);    
+             }
 	}
 
 	/**

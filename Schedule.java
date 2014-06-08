@@ -10,7 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * The Schedule class abstracts a collection of events and is the class passed to
+ * the GUI. Contains a name of the schedule as a string, an array of events, and
+ * the number of events on the schedule. Can be serialized in order to save and
+ * load schedules into the application
+ * 
+ * Implements Serializable
+ * 
  * @author jacobbruce
  */
 @SuppressWarnings("serial")
@@ -20,42 +26,83 @@ public class Schedule implements java.io.Serializable{
 	protected String name;
 	protected Events[] events;
 	int numEvents;
-
+        
+        /**
+         * Default constructor for a Schedule. Takes no arguments and initializes
+         * name to empty string, an empty array of events, and 0 as the number of
+         * events
+         */
 	public Schedule(){
 		name = "";
 		events = new Events[30];
 		numEvents = 0;
 	}
-
+        
+        /**
+         * Schedule constructor if only the name of the schedule is known. Initializes
+         * array of events to be empty and number of events to 0
+         * 
+         * @param n a string representing the name of the schedule
+         */
 	public Schedule(String n) {
 		name = n;
 		events = new Events[30];
 		numEvents = 0;
 	}
-
+        
+        /**
+         * Schedule constructor if the name and events are known.
+         * 
+         * @param n a string representing the name of the schedule
+         * @param e an array of Events
+         */
 	public Schedule(String n, Events[] e){
 		name = n;
 		System.arraycopy(e, numEvents, e, numEvents, e.length);
 		numEvents = e.length + 1;
 	}
-
+        /**
+         * Renames the schedule
+         * 
+         * @param n the name of the schedule as a string
+         */
 	public void setName(String n){
 		name = n;
 	}
 
+        /**
+         * Getter method for the Events in the schedule
+         * 
+         * @return the array of Events
+         */
 	public Events[] getEvents(){
 		return events;
 	}
-
+        
+        /**
+         * Getter method for the name of the schedule
+         * 
+         * @return the name of the schedule as a string
+         */
 	public String getName(){
 		return name;
 	}
-
+        
+        /**
+         * Getter method for the number of events in the schedule
+         * 
+         * @return the number of events in the Events array as an int
+         */
 	public int getNumber(){
 		return numEvents;
 	}
-
-	public void deleteEvent(int index){    // Deletes the indicated event by index.
+        
+        /**
+         * Deletes an event based off the index of the event in the array of Events
+         * 
+         * @param index the index, as an int, of the event to be deleted
+         */
+	public void deleteEvent(int index){    
 
 		for(int i = index; i<numEvents; i++){
 			events[i]=events[i+1];
@@ -64,7 +111,10 @@ public class Schedule implements java.io.Serializable{
 		numEvents--; //   Now one less event than previously before method call
 
 	}
-
+        
+        /**
+         * Deletes the entire array of Events contained in the schedule
+         */
 	public void clearCalendar(){   // Clears all events from the calendar
 		/*for(int i =0; i<numEvents;i++){
              events[i] = null;
@@ -75,8 +125,14 @@ public class Schedule implements java.io.Serializable{
 		events = new Events[30];
 		numEvents = 0;
 	}
-
-	public void addEvent(Events e){ // Adds the new event in time order (into an ordered list by time)
+        
+        /**
+         * Adds a new event in chronological order by day and start hour. Events
+         * array is the array implementation of an ordered list
+         * 
+         * @param e the event to be added
+         */
+	public void addEvent(Events e){ 
 		Events listElement;
 		int location = 0;
 
@@ -98,15 +154,34 @@ public class Schedule implements java.io.Serializable{
 		numEvents++;
 	}
 
-	public void addEventSeq(Events e){      // Adds the new event in order of adding, an unsorted list
+        /**
+         * Adds the new event in order of adding, an unsorted list
+         * 
+         * @param e the event to be added
+         */
+	public void addEventSeq(Events e){      
 		events[numEvents] = e;
 		numEvents ++;
 	}
-
+        
+        /**
+         * Getter method for accessing a single event by its index in the events 
+         * array
+         * 
+         * @param index the index of the event as an int
+         * @return the event at the specified index
+         */
 	public Events getEventByIndex(int index){
 		return events[index];
 	}
-
+        
+        /**
+         * Searches the events array for an event with the specified name
+         * 
+         * @throws RuntimeException if the name of the event does not exist
+         * @param s the name of the event to be retrieved as a string
+         * @return the event with the specified name
+         */
 	public Events getEventByName (String s){
 		for( int i = 0; i< numEvents; i++){
 			if(events[i].getName().equals(s)){
@@ -116,7 +191,11 @@ public class Schedule implements java.io.Serializable{
 		}
 		throw new RuntimeException("There is no event with this name.");
 	}
-
+        /**
+         * Overloads the toString method for the schedule class
+         * 
+         * @return the list of events in the schedule as a string
+         */
 	@Override
 	public String toString(){
 
@@ -131,7 +210,13 @@ public class Schedule implements java.io.Serializable{
 
 		return output;
 	}
-
+        
+        /**
+         * Adds the events from two schedules together in a new schedule
+         * 
+         * @param other one of the schedules to be added
+         * @return a schedule containing the events of this schedule and other schedule
+         */
 	public Schedule merge(Schedule other){      // Adds two schedules together.
 		Schedule combo = new Schedule(this.name + " and " + other.getName());
 
@@ -145,8 +230,14 @@ public class Schedule implements java.io.Serializable{
 
 		return combo;
 	}
-
-	public Schedule invert(){       // Inverts a schedule to find the free time from it
+        
+        /**
+         * Inverts a schedule to find the free time from it. Creates events where
+         * there is free time and removes events when that time is occupied
+         * 
+         * @return a schedule with the free time as Events
+         */
+	public Schedule invert(){  
 
 		// Finds free time given a schedule
 
@@ -231,13 +322,23 @@ public class Schedule implements java.io.Serializable{
 		return freeTime;  
 	} 
 
-	public Schedule bothFree(Schedule other){   // Merges two schedules, then inverts them, to find the time they're both free.
+        /**
+         * Merges two schedules, then inverts them, to find the time they're both free.
+         * 
+         * @param other the schedule to be compared to this schedule
+         * @return a schedule containing the free time shared in both schedules
+         */
+	public Schedule bothFree(Schedule other){   
 		Schedule s = this.merge(other);
 		s = s.invert();
 		return s;
 	}
 
-	// Serializes object and outputs it to specified file.
+	/**
+         * Serializes a schedule and outputs it to specified file.
+         * 
+         * @param fileName the file name as a string
+         */
 	public void serialize(String fileName){
 		ObjectOutputStream out = null;
 		try{
@@ -257,7 +358,12 @@ public class Schedule implements java.io.Serializable{
 		}
 	}
 
-	// Gets serialized schedule from specified file and returns it
+	/**
+         * Gets serialized schedule from specified file
+         * 
+         * @param fileName the name of the serialized schedule
+         * @return the deserialized schedule as a Schedule object
+         */
 	public static Schedule deserialize (String fileName){
 		ObjectInputStream in = null;
 		try{

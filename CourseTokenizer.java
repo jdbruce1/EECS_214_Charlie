@@ -9,14 +9,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * CourseTokenizer class contains the parseCourses method and is used for getting
+ * Northwestern Course information from a txt file. 
+ * 
  * @author Austin
  */
 public class CourseTokenizer {
 	private static final Logger logger = Logger.getLogger(CourseTokenizer.class.getName());
 
 	/**
-	 * @return the array list of events 
+         * parseCourses method parses a txt file and uses the information to 
+         * construct an ArrayList of Events. These parsed courses will displayed
+         * by the AddClassDialog JDialog box in the GUI.
+         * 
+	 * @return the ArrayList of Events
 	 */
 	public static ArrayList<Events> parseCourses() {
 		// read the text file and store as an array

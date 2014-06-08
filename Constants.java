@@ -2,8 +2,13 @@ package scheduleproject;
 
 /**
  * Class containing all of the project constants
+ * <ul>
+ * <li> GUI Time Labels
+ * <li> GUI Color Hex Codes
+ * <li> Int Representations of 24 hour times
+ * </ul>
+ * 
  * @author jen
- *
  */
 
 public class Constants {

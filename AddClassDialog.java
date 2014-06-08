@@ -8,9 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * AddClassDialog extends the standard Java swing JDialog box feature to allow
+ * users to select pre-made Northwestern courses to add to their schedules. The
+ * AddClassDialog becomes visible upon a user selecting the "Add a class" option
+ * under the File menu.
  * 
  * @author Jen
- *
  */
 
 @SuppressWarnings("serial")
@@ -25,7 +28,16 @@ public class AddClassDialog extends JDialog{
 	private WeeklyCalFrame calendarFrame;
 	// end variable declarations
 
-	// constructor
+	/** 
+         * Constructor for the AddClassDialog box. Initializes the JDialog box
+         * with a JLabel instructing the user to select a class. A JComboBox 
+         * containing the names of the pre-made courses. A JButton to confirm 
+         * the selection.
+         * 
+         * @param frame The main GUI JFrame. Must be passed so the dialog box 
+         *              can access WeeklyCalFrame's methods
+         * @param l     Takes in an ArrayList of Courses as events
+         */
 	AddClassDialog(WeeklyCalFrame frame, ArrayList<Events> l) {
 		calendarFrame = frame;
 		classList = l;
@@ -58,7 +70,11 @@ public class AddClassDialog extends JDialog{
 
 		this.add(dialogPanel);
 	}
-	
+	/**
+         * Event listener for the select a class JButton. On user click, will
+         * add the selected class to the user's schedule and pass the course
+         * as an event to the WeeklyCalFrame for display 
+         */
 	private void addEventActionListener(){
 		// prints current values of the buttons
 		logger.log(Level.INFO, "Selected Values: " + addClassList.getSelectedItem());

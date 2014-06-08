@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package scheduleproject;
 
@@ -16,7 +12,9 @@ import java.io.FileOutputStream;
 
 
 /**
- *
+ * Serialization class provide the methods for saving and loading schedules as
+ * files
+ * 
  * @author mihir
  */
 public class Serialization {
@@ -29,7 +27,13 @@ public class Serialization {
         
     }
     
-    public void serialize(String fileName, Schedule s1){    // Serializes object and outputs it to specified file.
+    /**
+     * Serializes schedule and outputs it to specified file
+     * 
+     * @param fileName the name of the output file as a string
+     * @param s1 the schedule to be serialized 
+     */
+    public void serialize(String fileName, Schedule s1){    // 
         try{    
         filename = fileName;
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
@@ -47,9 +51,13 @@ public class Serialization {
         
     }
         
-
-
-    public Schedule Deserialize (String fileName){  // Gets serialized schedule from specified file and returns it
+    /**
+     * Gets serialized schedule from specified file and returns it
+     * 
+     * @param fileName the name of the file containing a serialized schedule
+     * @return the serialized schedule as an schedule object
+     */
+    public Schedule Deserialize (String fileName){  
     try{
             FileInputStream door = new FileInputStream(fileName);
             ObjectInputStream reader = new ObjectInputStream(door);

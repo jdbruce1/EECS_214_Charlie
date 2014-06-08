@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package scheduleproject;
 
@@ -15,9 +10,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import scheduleproject.Schedule;
 
+/**
+ * The main class for the application. Links application logic and GUI creation
+ */
+
 public class RunCalendar {
 
-	/**
+    /**
+     * Executes the application builds GUI and links application logic to GUI
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

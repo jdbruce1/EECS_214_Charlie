@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package scheduleproject;
 
 /**
- *
+ * TimeClass abstracts the time aspect of an event including when it begins, 
+ * ends, its duration, and the hours and minutes of when it starts
+ * 
+ * implements Comparable and Serializable
+ * 
  * @author Brownrout
  */
 @SuppressWarnings("serial")
@@ -23,6 +22,18 @@ public class TimeClass implements Comparable<TimeClass>, java.io.Serializable {
     // 6 <= hours <= 22
     // 0 <= minutes <= 59
     // 30 <= duration <= 300
+    
+    /**
+     * Constructor for a TimeClass object when the starting hours, minutes, and
+     * duration is known.  
+     * 
+     * @throws IllegalArgumentException
+     * @param hours  the hour the event begins as an int. 
+     *               Hours must not be less than 6 or greater than 22.
+     * @param minutes the minute the event begins as an int.
+     *                Minutes must be 0 or 30
+     * @param duration the length of the event in minutes
+     */
     public TimeClass(int hours, int minutes, int duration){
         if(hours < 6 || hours+((duration+minutes)/60) > 22){
             throw new IllegalArgumentException("Time must be between 6 AM and 10 PM.");
@@ -43,6 +54,19 @@ public class TimeClass implements Comparable<TimeClass>, java.io.Serializable {
         this.end = this.start + duration;
     }
     
+    /**
+     * Constructor for TimeClass when only the starting and ending hours and
+     * minutes are known
+     * 
+     * @throws IllegalArgumentException
+     * @param startHours the hour the event begins as an int. 
+     *                   Hours must not be less than 6 or greater than 22.
+     * @param startMinutes the minute the event begins as an int.
+     *                     Minutes must be 0 or 30
+     * @param endHours the hour the event ends as an int. Must be equal to or
+     *                 greater than start hours
+     * @param endMinutes the minute the event ends as an int. Must be 0 or 30
+     */
     public TimeClass(int startHours, int startMinutes, int endHours, int endMinutes){
         if(startHours < 6 || endHours*60+endMinutes > 1320){
             throw new IllegalArgumentException("Time must be between 6 AM and 10 PM.");
@@ -60,11 +84,14 @@ public class TimeClass implements Comparable<TimeClass>, java.io.Serializable {
         this.end = endHours * 60 + endMinutes;
         this.duration = this.end - this.start;
     }
-
+    /**
+     * Overloaded compareTo method for TimeClass 
+     * 
+     * @param time2 time to be compared with this time
+     * @return 1 if times conflict, 0 otherwise
+     */
     @Override
     public int compareTo(TimeClass time2)
-    // return 1 if the times conflict
-    // return 0 if the times do not conflict
     {
         // If start time conflicts
         if(time2.getTime()>=this.getTime()&&time2.getTime()<=(this.getTime()+this.duration)){
@@ -75,7 +102,16 @@ public class TimeClass implements Comparable<TimeClass>, java.io.Serializable {
         }
         else return 0;
     }
-
+    /**
+     * Sets the hours, minutes, and duration of a TimeClass object
+     * 
+     * @throws IllegalArgumentException
+     * @param hours the hour the event begins as an int. Hours must be greater
+     *              than 6 but less than 22
+     * @param minutes the minute the event begins as an int. Minutes must be 0
+     *                or 30.
+     * @param duration the length of the event in minutes as an int
+     */
     public void setTime(int hours, int minutes, int duration) {
         if(hours < 6 || hours+duration > 22){
             throw new IllegalArgumentException("Time must be between 6 AM and 10 PM");
@@ -89,40 +125,86 @@ public class TimeClass implements Comparable<TimeClass>, java.io.Serializable {
         this.start = hours*60 + minutes;
         this.end = this.start + duration;
     }
-
+    
+    /**
+     * Getter function for the start of the time
+     * 
+     * @return the start of the TimeClass object in minutes as an int
+     */
     public int getTime() {
         return start;
     }
     
+    /**
+     * Getter function for the start in hours
+     * 
+     * @return the start of the TimeClass object in hours as an int 
+     */
     public int getStartHours(){
         return start / 60;
     }
     
+    /**
+     * Getter function for the start in minutes
+     * 
+     * @return the start of the TimeClass object in minutes as an int
+     */
     public int getStartMinutes(){
         return start % 60;
     }
     
+     /**
+     * Getter function for the end in hours
+     * 
+     * @return the end of the TimeClass object in hours as an int 
+     */
     public int getEndHours(){
         return end / 60;
     }
     
+    /**
+     * Getter function for the end in minutes
+     * 
+     * @return the end of the TimeClass object in minutes as an int
+     */
     public int getEndMinutes(){
         return end % 60;
     }
     
+    /**
+     * Getter function for the end of the TimeClass
+     * 
+     * @return the end of the TimeClass object in minutes as an int
+     */
     public int getEnd(){
         return end;
     }
     
+    /**
+     * Getter function for the length of the event
+     * 
+     * @return the duration of the event in minutes as an int
+     */
     public int getDuration(){
         return duration;
     }
     
+    /**
+     * Overloads the toString function for TimeClass Objects
+     * 
+     * @return the start and end of the object in am/pm format as a string
+     */
     @Override
     public String toString(){
         return convertTime();
     }
-
+    
+    /**
+     * Converts the TimeClass object from military time into am/pm format. Is 
+     * called by the toString method
+     * 
+     * @return string containing am/pm formated start and end of a TimeClass object
+     */
     public String convertTime() {
         
         String timeOutput = "";

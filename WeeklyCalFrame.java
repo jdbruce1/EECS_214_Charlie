@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package scheduleproject;
 
@@ -27,7 +22,12 @@ import scheduleproject.Schedule;
 
 
 /**
- *
+ * The main GUI JFrame Java swing component. WeeklyCalFrame generates the main 
+ * weekly calendar view, menu items, and event visualization as well as interacts
+ * with AddClassDialog and NewEventDialog to create and add events to the user's
+ * master schedule
+ * 
+ * @author Jen
  * @author Mitchell
  */
 @SuppressWarnings("serial")
@@ -75,7 +75,8 @@ public class WeeklyCalFrame extends JFrame {
 	// end of variables declaration
 
 	/**
-	 * Creates new form WeeklyCalFrame
+         * Creates new WeeklyCalFrame with the user's schedule. Asks user to name
+         * their schedule on start of application
 	 */
 	public WeeklyCalFrame(Schedule s) {
 		mySchedule = s;
@@ -86,7 +87,10 @@ public class WeeklyCalFrame extends JFrame {
 		this.setTitle(s.getName());
 	}
 
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+	// <editor-fold defaultstate="collapsed" desc="Formatting for WeeklyCalFrame"> 
+        /**
+         * Function that initializes all JPanels, JLabels, and JMenus for the GUI
+         */
 	private void initComponents() {        
 		// initialize the menu bar and labels, and other minor details
 		createMenu();
@@ -214,9 +218,16 @@ public class WeeklyCalFrame extends JFrame {
 		// Tuesday panel initialization
 		tuePanel = new JPanel();
 		initializePanel(tuePanel);
-
 		GroupLayout tuesdayLayout = (GroupLayout) tuePanel.getLayout();
-
+                
+                ParallelGroup tuesHoriGroup = tuesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
+		tuesHoriGroup.addComponent(tuesEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+		for(int i = 1; i<tuesEventLabels.length; i++){
+			tuesHoriGroup.addComponent(tuesEventLabels[i], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE);
+		}
+                System.out.println("Default:" + GroupLayout.DEFAULT_SIZE);
+		tuesdayLayout.setHorizontalGroup(tuesHoriGroup);
+                /*
 		tuesdayLayout.setHorizontalGroup(
 				tuesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(tuesEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -255,8 +266,16 @@ public class WeeklyCalFrame extends JFrame {
 				.addComponent(tuesEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(tuesEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(tuesEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-				);
+				);*/
+                SequentialGroup tuesVertGroup = tuesdayLayout.createSequentialGroup();
+		for(int i = 0; i<tuesEventLabels.length; i++){
+			tuesVertGroup.addComponent(tuesEventLabels[i], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE);
+		}
 		tuesdayLayout.setVerticalGroup(
+				tuesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(tuesVertGroup));
+                
+		/*tuesdayLayout.setVerticalGroup(
 				tuesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(tuesdayLayout.createSequentialGroup()
 						.addComponent(tuesEventLabels[0], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
@@ -296,14 +315,21 @@ public class WeeklyCalFrame extends JFrame {
 						.addComponent(tuesEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tuesEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 
-						));
+						));*/
 
 		// Wednesday panel initialization
 		wedPanel = new JPanel();
 		initializePanel(wedPanel);
-
 		GroupLayout wednesdayLayout = (GroupLayout) wedPanel.getLayout();
-
+                
+                ParallelGroup wedHoriGroup = wednesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
+		wedHoriGroup.addComponent(wedEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+		for(int i = 1; i<wedEventLabels.length; i++){
+			wedHoriGroup.addComponent(wedEventLabels[i], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE);
+		}
+                System.out.println("Default:" + GroupLayout.DEFAULT_SIZE);
+		wednesdayLayout.setHorizontalGroup(wedHoriGroup);
+                /*
 		wednesdayLayout.setHorizontalGroup(
 				wednesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(wedEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -343,7 +369,16 @@ public class WeeklyCalFrame extends JFrame {
 				.addComponent(wedEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(wedEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 
-				);
+				);*/
+                
+                SequentialGroup wedVertGroup = wednesdayLayout.createSequentialGroup();
+		for(int i = 0; i<wedEventLabels.length; i++){
+			wedVertGroup.addComponent(wedEventLabels[i], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE);
+		}
+		wednesdayLayout.setVerticalGroup(
+				wednesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(wedVertGroup));
+                /*
 		wednesdayLayout.setVerticalGroup(
 				wednesdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(wednesdayLayout.createSequentialGroup()
@@ -384,14 +419,21 @@ public class WeeklyCalFrame extends JFrame {
 						.addComponent(wedEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(wedEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 
-						));
+						));*/
 
 		// Thursday panel initialization
 		thuPanel = new JPanel();
 		initializePanel(thuPanel);
-
 		GroupLayout thursdayLayout = (GroupLayout) thuPanel.getLayout();
-
+                
+                ParallelGroup thursHoriGroup = thursdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
+		thursHoriGroup.addComponent(thurEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+		for(int i = 1; i<thurEventLabels.length; i++){
+			thursHoriGroup.addComponent(thurEventLabels[i], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE);
+		}
+                System.out.println("Default:" + GroupLayout.DEFAULT_SIZE);
+		thursdayLayout.setHorizontalGroup(thursHoriGroup);
+                /*
 		thursdayLayout.setHorizontalGroup(
 				thursdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(thurEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -430,7 +472,16 @@ public class WeeklyCalFrame extends JFrame {
 				.addComponent(thurEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(thurEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(thurEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-				);
+				);*/
+                
+                SequentialGroup thursVertGroup = thursdayLayout.createSequentialGroup();
+		for(int i = 0; i<thurEventLabels.length; i++){
+			thursVertGroup.addComponent(thurEventLabels[i], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE);
+		}
+		thursdayLayout.setVerticalGroup(
+				thursdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(thursVertGroup));
+                /*
 		thursdayLayout.setVerticalGroup(
 				thursdayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(thursdayLayout.createSequentialGroup()
@@ -471,14 +522,21 @@ public class WeeklyCalFrame extends JFrame {
 						.addComponent(thurEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(thurEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 
-						));
+						));*/
 
 		// Friday panel initialization
 		friPanel = new JPanel();
 		initializePanel(friPanel);
-
 		GroupLayout fridayLayout = (GroupLayout) friPanel.getLayout();
-
+                
+                ParallelGroup friHoriGroup = fridayLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
+		friHoriGroup.addComponent(friEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+		for(int i = 1; i<friEventLabels.length; i++){
+			friHoriGroup.addComponent(friEventLabels[i], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE);
+		}
+                System.out.println("Default:" + GroupLayout.DEFAULT_SIZE);
+		fridayLayout.setHorizontalGroup(friHoriGroup);
+                /*
 		fridayLayout.setHorizontalGroup(
 				fridayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(friEventLabels[0], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -517,7 +575,16 @@ public class WeeklyCalFrame extends JFrame {
 				.addComponent(friEventLabels[33], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(friEventLabels[34], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 				.addComponent(friEventLabels[35], GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-				);
+				);*/
+                
+                SequentialGroup friVertGroup = fridayLayout.createSequentialGroup();
+		for(int i = 0; i<friEventLabels.length; i++){
+			friVertGroup.addComponent(friEventLabels[i], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE);
+		}
+		fridayLayout.setVerticalGroup(
+				fridayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(friVertGroup));
+                /*
 		fridayLayout.setVerticalGroup(
 				fridayLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(fridayLayout.createSequentialGroup()
@@ -557,7 +624,7 @@ public class WeeklyCalFrame extends JFrame {
 						.addComponent(friEventLabels[33], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(friEventLabels[34], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(friEventLabels[35], GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-				);
+				);*/
 
 
 		dayNamesCont = new JPanel();
@@ -697,7 +764,11 @@ public class WeeklyCalFrame extends JFrame {
 	}// </editor-fold>
 
 
-	// action to be executed when the "new event" menu button is selected
+	/**
+         * Action to be executed when the "new event" menu button is selected
+         * 
+         * @param evt the event created upon selecting the new event button
+         */
 	private void newEventActionPerformed(ActionEvent evt) {
 		NewEventDialog newEventDialog = new NewEventDialog(WeeklyCalFrame.this);
 		if(colorIndex < 8){
@@ -709,7 +780,14 @@ public class WeeklyCalFrame extends JFrame {
 		newEventDialog.setVisible(true);
 		newEventDialog.setSize(newEventDialog.getPreferredSize());
 	}
-
+        
+        /**
+         * action function for selected the compare event menu item. Opens a file
+         * chooser, compares the current schedule with a serialized one, and 
+         * displays the resulting free time
+         * 
+         * @param e the action generated by selecting the compare event menu item
+         */
 	private void compareActionPerformed(ActionEvent e){
 		Schedule otherSchedule;
 		Schedule freeTime;
@@ -727,7 +805,6 @@ public class WeeklyCalFrame extends JFrame {
 		else{
 			otherSchedule = new Schedule();
 		}
-
 
 		// Compare the two schedules, resulting in a schedule
 
@@ -766,7 +843,14 @@ public class WeeklyCalFrame extends JFrame {
 
 		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-
+        
+        /**
+         * action function for when the add schedule menu item is selected. Opens
+         * a file chooser and imports a serialized schedule as the GUI's main
+         * schedule
+         * 
+         * @param e the event generated by selecting the add schedule menu item
+         */
         private void addSchedActionPerformed(ActionEvent e){
             Schedule otherSchedule;
             
@@ -787,6 +871,12 @@ public class WeeklyCalFrame extends JFrame {
             renderSchedule(0);
         }
         
+        /**
+         * displays the current schedule on the GUI as colored blocks with each
+         * block representing an event. Color will change as more events are added
+         * 
+         * @param option 0 for alternating colors, 1 for constant color green
+         */
 	private void renderSchedule(int option){
 		Events[] events = mySchedule.getEvents();
 		int i = 0;
@@ -818,7 +908,9 @@ public class WeeklyCalFrame extends JFrame {
 		}
 	}
 
-	// create the menu bar
+	/**
+         * initializes all the Java Swing components to create the menu bar
+         */
 	private void createMenu(){
 		menuCont = new JMenuBar();
 		fileMenu = new JMenu();
@@ -946,7 +1038,9 @@ public class WeeklyCalFrame extends JFrame {
 		setJMenuBar(menuCont);
 	}
 
-	// initialization of the arrays of labels
+	/**
+         * creates the time and day labels for the GUI
+         */
 	private void initializeLabels(){
 		// Initialize day labels
 		dayLabels = new JLabel[5];
@@ -970,7 +1064,11 @@ public class WeeklyCalFrame extends JFrame {
 			timeLabels[i].setText(Constants.TIMES[2*i]);
 		}
 	}
-
+        /**
+         * Creates the day panels which represent each day as a container of time
+         * 
+         * @param panel the day panel to be initialized 
+         */
 	private void initializePanel(JPanel panel){
 		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
 		GroupLayout layout = new GroupLayout(panel);
@@ -984,7 +1082,14 @@ public class WeeklyCalFrame extends JFrame {
 				.addGap(0, 0, Short.MAX_VALUE)
 				);
 	}
-	//fuctions that display events visually 
+        
+	/**
+         * display events that occur on Monday by setting the color of each event
+         * panel that corresponds to the hours that the event occurs
+         * 
+         * @param event the event to be displayed
+         * @param index 0 for rotating colors, 1 for constant green color
+         */ 
 	private void setMondayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
@@ -1001,7 +1106,14 @@ public class WeeklyCalFrame extends JFrame {
 			monEventLabels[i].setOpaque(true);
 		}
 	}
-
+        
+        /**
+         * display events that occur on Tuesday by setting the color of each event
+         * panel that corresponds to the hours that the event occurs
+         * 
+         * @param event the event to be displayed
+         * @param index 0 for rotating colors, 1 for constant green color
+         */ 
 	private void setTuesdayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
@@ -1018,7 +1130,14 @@ public class WeeklyCalFrame extends JFrame {
 			tuesEventLabels[i].setOpaque(true);
 		}
 	}
-
+        
+        /**
+         * display events that occur on Wednesday by setting the color of each event
+         * panel that corresponds to the hours that the event occurs
+         * 
+         * @param event the event to be displayed
+         * @param index 0 for rotating colors, 1 for constant green color
+         */ 
 	private void setWednesdayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
@@ -1035,7 +1154,14 @@ public class WeeklyCalFrame extends JFrame {
 			wedEventLabels[i].setOpaque(true);
 		}
 	}
-
+        
+        /**
+         * display events that occur on Thursday by setting the color of each event
+         * panel that corresponds to the hours that the event occurs
+         * 
+         * @param event the event to be displayed
+         * @param index 0 for rotating colors, 1 for constant green color
+         */ 
 	private void setThursdayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
@@ -1052,7 +1178,14 @@ public class WeeklyCalFrame extends JFrame {
 			thurEventLabels[i].setOpaque(true);
 		}
 	}
-
+        
+        /**
+         * display events that occur on Friday by setting the color of each event
+         * panel that corresponds to the hours that the event occurs
+         * 
+         * @param event the event to be displayed
+         * @param index 0 for rotating colors, 1 for constant green color
+         */ 
 	private void setFridayEvents(Events event, int index){
 
 		int begI = event.Time.getTime()/30 - 12;
@@ -1069,7 +1202,10 @@ public class WeeklyCalFrame extends JFrame {
 			friEventLabels[i].setOpaque(true);
 		}
 	}
-
+        
+        /**
+         * clear this schedule by removing all text and color from the event JLabels
+         */
 	protected void clearSchedule(){
 
 		for(int i = 0; i < 36; i++){
@@ -1087,6 +1223,12 @@ public class WeeklyCalFrame extends JFrame {
 		}
 	}
 	
+        /**
+         * visualize a recurring event
+         * 
+         * @param evt the event to be displayed on the GUI
+         * @param colorI 0 for rotating colors, 1 for constant color green
+         */
 	public void addEvent(Events evt, int colorI){
         if(evt.getDays().contains("M")){
             this.setMondayEvents(evt,colorI);
@@ -1105,6 +1247,12 @@ public class WeeklyCalFrame extends JFrame {
         }
 	}
 	
+        /**
+         * Getter method for the schedule in WeeklyCalFrame. Used for passing the
+         * main schedule to other GUI components 
+         * 
+         * @return the main schedule from the GUI
+         */
 	public Schedule getScheduleFromFrame(){
 		return mySchedule;
 	}

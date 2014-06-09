@@ -1239,7 +1239,7 @@ public class WeeklyCalFrame extends JFrame {
         if(evt.getDays().contains("W")){
             this.setWednesdayEvents(evt,colorI);
         }
-        if(evt.getDays().contains("Th")){
+        if(evt.getDays().contains("TH")){
             this.setThursdayEvents(evt,colorI);
         }
         if(evt.getDays().contains("F")){

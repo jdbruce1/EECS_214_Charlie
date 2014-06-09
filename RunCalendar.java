@@ -24,11 +24,6 @@ public class RunCalendar {
     public static void main(String args[]) {
     	final Schedule sched = new Schedule();
 
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -45,7 +40,6 @@ public class RunCalendar {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(WeeklyCalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {

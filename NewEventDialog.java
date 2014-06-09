@@ -3,8 +3,6 @@ package scheduleproject;
 
 import javax.swing.*;
 
-import scheduleproject.Schedule;
-
 import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
